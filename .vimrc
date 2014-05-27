@@ -2,9 +2,9 @@
 set number "行番号を表示
 set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
-set tabstop=4 "インデントをスペース4つ分に設定
+set tabstop=2 "インデントをスペース2つ分に設定
 set smartindent "オートインデント
-set shiftwidth=4 "オートインデント時のインデントする文字数
+set shiftwidth=2 "オートインデント時のインデントする文字数
 set whichwrap=b,s,h,l,<,>,[,] "カーソルを行頭、行末で止まらないようにする
 "カラースキーマ設定
 syntax on
