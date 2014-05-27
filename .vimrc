@@ -16,18 +16,27 @@ set nowritebackup "バックアップファイルを作らない
 set nobackup "バックアップをしない
 "set mouse=a "マウスモード有効
 
-"#####プラグインマネージャー(Vundle)#####
+"#####プラグインマネージャー(NeoBundle)#####
 set nocompatible
 filetype off
-set rtp+=~/.vim/vundle.git/
-call vundle#rc()
-" プラグインを記述
+if has('vim_starting')
+	set runtimepath+=~/.vim/bundle/neobundle.vim
+	call neobundle#rc()
+endif
+"#########プラグインを記述##################
 " プラグイン管理
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'VimClojure'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'jpalardy/vim-slime'
+NeoBundle 'scrooloose/syntastic'
 "C++
-Bundle 'Rip-Rip/clang_complete'
+NeoBundle 'Rip-Rip/clang_complete'
 "PHP
-Bundle 'Shougo/neosnippet.vim'
-
-filetype plugin indent on
+NeoBundle 'Shougo/neosnippet.vim'
+filetype plugin on
+filetype indent on
