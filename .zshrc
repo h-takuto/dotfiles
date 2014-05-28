@@ -102,6 +102,8 @@ case ${OSTYPE} in
 		#linux用の設定
 		alias la='ls -a --color'
 		alias ls='ls --color'
+		alias ui='~/nad3m/build/system/ui/public_html'
+		alias sysui='~/nad3m/build/system/ui/sysui/Smarty_data/templates'
 		;;
 esac
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
