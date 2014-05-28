@@ -2,14 +2,12 @@
 ##How to use##
 $git clone http://github.com/teari/dotfiles.git  
 
+###.zshrc .vimrc .gitconfigのみ使いたい場合###
 make  
 
-####or####
-
+###すべての設定を使う場合###
 $./setup.sh  
 
-##NeoBundle##
-mkdir -p ~/.vim/bundle  
-git clone https://github.com/Shougo/neobundle.git ~/.vim/bundle/neobundle.vim  
+##NeoBundle##  
 vim  
 :NeoBundleInstall  
