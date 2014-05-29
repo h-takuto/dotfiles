@@ -5,8 +5,13 @@
 "ビジュアル           vnoremap vmap
 "コマンド             cnoremap cmap
 "インサート           inoremap imap
-
+":=;に変更
 nnoremap ; :
+"ノーマルモードでエンターキーで改行
+noremap <CR> o<ESC>>
+"ビジュアルモード時vで行末まで選択
+vnoremap v $h
+
 
 "#####表示設定#####
 set number "行番号を表示
@@ -51,11 +56,36 @@ endif
 "#########プラグインを記述##################
 " プラグイン管理
 NeoBundle 'Shougo/neobundle.vim'
+
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'VimClojure'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
+let g:acp_enableAtStartup = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : ''
+    \ }
+
+inoremap <expr><C-g>    neocomplcache#undo_completion()
+inoremap <expr><C-l>    neocomplcache#complete_common_string()
+
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+	return neocomplcache#smart_close_popup() . "\<TAB>"
+endfunction
+
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expt><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplcache#close_popup()
+inoremap <expr><C-e> neocomplcache#cancel_popup()
+
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'scrooloose/syntastic'
