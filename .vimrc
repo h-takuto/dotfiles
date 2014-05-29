@@ -6,6 +6,8 @@ set tabstop=2 "インデントをスペース2つ分に設定
 set smartindent "オートインデント
 set shiftwidth=2 "オートインデント時のインデントする文字数
 set whichwrap=b,s,h,l,<,>,[,] "カーソルを行頭、行末で止まらないようにする
+set list
+set listchars=tab:>-,trail:~
 "カラースキーマ設定
 syntax on
 colorscheme evening
