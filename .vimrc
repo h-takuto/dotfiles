@@ -1,3 +1,13 @@
+"#####キーバインド#####
+"ノーマル+ビジュアル  noremap  map
+"コマンド+インサート  noremap! map!
+"ノーマル　　　　　　 nnoremap nmap
+"ビジュアル           vnoremap vmap
+"コマンド             cnoremap cmap
+"インサート           inoremap imap
+
+nnoremap ; :
+
 "#####表示設定#####
 set number "行番号を表示
 set title "編集中のファイル名を表示
@@ -12,15 +22,24 @@ set listchars=tab:>-,trail:~
 syntax on
 colorscheme evening
 
+
+
+
 "#####検索設定#####
 set ignorecase "大文字、小文字の区別なく検索する
 set wrapscan	 "検索時に最後まで行ったら最初に戻る
+
+
+
 
 "#####環境設定#####
 set noswapfile " .swapファイルを作らない
 set nowritebackup "バックアップファイルを作らない
 set nobackup "バックアップをしない
 "set mouse=a "マウスモード有効
+
+
+
 
 "#####プラグインマネージャー(NeoBundle)#####
 set nocompatible
