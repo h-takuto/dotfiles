@@ -13,6 +13,8 @@ noremap <CR> o<ESC>>
 vnoremap v $h
 
 
+
+
 "#####表示設定#####
 set number "行番号を表示
 set title "編集中のファイル名を表示
@@ -72,19 +74,19 @@ let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : ''
     \ }
 
-inoremap <expr><C-g>    neocomplcache#undo_completion()
-inoremap <expr><C-l>    neocomplcache#complete_common_string()
+"inoremap <expr><C-g>    neocomplcache#undo_completion()
+"inoremap <expr><C-l>    neocomplcache#complete_common_string()
 
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
 	return neocomplcache#smart_close_popup() . "\<TAB>"
 endfunction
 
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expt><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expt><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y> neocomplcache#close_popup()
+"inoremap <expr><C-e> neocomplcache#cancel_popup()
 
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'jpalardy/vim-slime'
