@@ -45,7 +45,6 @@ set noswapfile " .swapファイルを作らない
 set nowritebackup "バックアップファイルを作らない
 set nobackup "バックアップをしない
 "set mouse=a "マウスモード有効
-set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
 
 
 
@@ -87,9 +86,17 @@ NeoBundle 'thinca/vim-quickrun'
 set splitbelow
 let g:quickrun_config={'*':{'split' : ''}}
 
+NeoBundle 'sjl/gundo.vim',{
+\ 'autoload' : {
+\    'commands' : ["GundoToggle"],
+\  }
+\}
+
 "C++
 "Neobundle 'Shougo/neocomplcache-clang_complete' 不便を感じたら導入
 NeoBundle 'Rip-Rip/clang_complete'
 
 filetype plugin on
 filetype indent on
+
+set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
