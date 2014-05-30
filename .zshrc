@@ -108,8 +108,3 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 	export WORKON_HOME=$HOME/.virtualenvs
 	source `which virtualenvwrapper.sh`
 fi
-
-alias ui='~/nad3m/build/system/ui/public_html'
-alias sysui='~/nad3m/build/system/ui/sysui/Smarty_data/templates'
-alias scptet='scp ~/build/system/ui/sysui/Smarty_data/templates/tenant.tpl thayakawa@10.30.138.230:/var/www/sysui/Smarty_data/templates/tenant.tpl'
-alias scptep='scp ~/build/system/ui/public_html/tenant.php thayakawa@10.30.138.230:/var/www/public_html/tenant.php'
