@@ -45,6 +45,7 @@ set noswapfile " .swapファイルを作らない
 set nowritebackup "バックアップファイルを作らない
 set nobackup "バックアップをしない
 "set mouse=a "マウスモード有効
+set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
 
 
 
@@ -64,7 +65,6 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'VimClojure'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
-
 NeoBundle 'Shougo/neocomplcache'
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
@@ -88,6 +88,7 @@ set splitbelow
 let g:quickrun_config={'*':{'split' : ''}}
 
 "C++
+"Neobundle 'Shougo/neocomplcache-clang_complete' 不便を感じたら導入
 NeoBundle 'Rip-Rip/clang_complete'
 
 filetype plugin on
