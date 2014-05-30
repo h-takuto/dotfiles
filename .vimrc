@@ -35,8 +35,8 @@ colorscheme evening
 
 "#####検索設定#####
 set ignorecase "大文字、小文字の区別なく検索する
-set wrapscan	 "検索時に最後まで行ったら最初に戻る
-
+set wrapscan   "検索時に最後まで行ったら最初に戻る
+set hlsearch   "ハイライト検索が有効
 
 
 
