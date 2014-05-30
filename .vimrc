@@ -74,6 +74,7 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : ''
     \ }
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 function! s:my_cr_function()
 	return neocomplcache#smart_close_popup() . "\<TAB>"
 endfunction
