@@ -89,6 +89,8 @@ alias rmrf='rm -r -f'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias -s py=python
+alias -s php=php
 
 case ${OSTYPE} in
 	darwin*)
