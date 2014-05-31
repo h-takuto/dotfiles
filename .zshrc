@@ -36,8 +36,9 @@ fi
 HISTFILE=~/.zsh_history   # ヒストリを保存するファイル
 HISTSIZE=10000            # メモリに保存されるヒストリの件数
 SAVEHIST=10000            # 保存されるヒストリの件数
+setopt EXTENDED_HISTORY   #開始と終了を記録
 setopt hist_ignore_dups   # 直前と同じコマンドはヒストリに追加しない
-setopt share_history      # 他のシェルのヒストリをリアルタイムで共有する
+#setopt share_history      # 他のシェルのヒストリをリアルタイムで共有する
 
 function history-all { history -E 1 } #全経歴を一覧で表示する
 
