@@ -14,8 +14,6 @@ noremap <CR> o<ESC>>
 vnoremap v $h
 
 
-
-
 "#####表示設定#####
 set number "行番号を表示
 set title "編集中のファイル名を表示
@@ -47,8 +45,6 @@ set nobackup "バックアップをしない
 "set mouse=a "マウスモード有効
 
 
-
-
 "#####プラグインマネージャー(NeoBundle)#####
 set nocompatible
 filetype off
@@ -59,17 +55,21 @@ endif
 "#########プラグインを記述##################
 " プラグイン管理
 NeoBundle 'Shougo/neobundle.vim'
-
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'VimClojure'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
+
+
+
 NeoBundle 'Shougo/neocomplcache'
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_smart_case_completion = 1
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : ''
     \ }
@@ -79,17 +79,17 @@ function! s:my_cr_function()
 	return neocomplcache#smart_close_popup() . "\<TAB>"
 endfunction
 
+
+
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets-complete'
 NeoBundle 'honza/vim-snippets'
-"Enable snipMate compatibitiy feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
-
-"Tell Neosnippet about the other snippets
 let g:neocomplcache_snippets_dir='~/.vim/bundle/vim-snippets/snippets'
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
-imap,, <Plug>(neosnippet_expand_or_jump)
-smap,, <Plug>(neosnippet_expand_or_jump)
 "NeoBundle 'jpalardy/vim-slime' よく分からないので今は削除
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'thinca/vim-quickrun'
