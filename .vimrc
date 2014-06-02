@@ -74,6 +74,7 @@ let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : ''
     \ }
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 function! s:my_cr_function()
 	return neocomplcache#smart_close_popup() . "\<TAB>"
 endfunction
