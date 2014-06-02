@@ -79,7 +79,16 @@ function! s:my_cr_function()
 endfunction
 
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/neosnippet-snippets-complete'
+NeoBundle 'honza/vim-snippets'
+"Enable snipMate compatibitiy feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+"Tell Neosnippet about the other snippets
+let g:neocomplcache_snippets_dir='~/.vim/bundle/vim-snippets/snippets'
+
+imap,, <Plug>(neosnippet_expand_or_jump)
+smap,, <Plug>(neosnippet_expand_or_jump)
 "NeoBundle 'jpalardy/vim-slime' よく分からないので今は削除
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'thinca/vim-quickrun'
