@@ -91,6 +91,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias -s py=python
 alias -s php=php
+alias hisa='history-all'
 
 case ${OSTYPE} in
 	darwin*)
