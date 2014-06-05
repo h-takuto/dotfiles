@@ -97,11 +97,8 @@ NeoBundle 'thinca/vim-quickrun'
 set splitbelow
 let g:quickrun_config={'*':{'split' : ''}}
 
-NeoBundle 'sjl/gundo.vim',{
-\ 'autoload' : {
-\    'commands' : ["GundoToggle"],
-\  }
-\}
+NeoBundle 'sjl/gundo.vim'
+nmap Z :<C-u>GundoToggle<CR>
 
 "C++
 "Neobundle 'Shougo/neocomplcache-clang_complete' 不便を感じたら導入
