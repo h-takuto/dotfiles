@@ -4,6 +4,7 @@ bell_msg "^G"
 defkanfi utf-8
 defencoding utf-8
 endoding utf-8 utf-8
+#スクロールバッファは最大10000行にする
 defscrollback 10000
 #ctrl+aをctrl+jに変更
 escape ^Jj
