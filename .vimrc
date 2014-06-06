@@ -64,6 +64,8 @@ NeoBundle 'Shougo/unite.vim'
 
 
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_underbar_completion = 1
@@ -74,17 +76,15 @@ let g:neocomplcache_enable_smart_case_completion = 1
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : ''
     \ }
+imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable()
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 function! s:my_cr_function()
 	return neocomplcache#smart_close_popup() . "\<TAB>"
 endfunction
 
-
-
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets-complete'
-NeoBundle 'honza/vim-snippets'
+"snippets用設定
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neocomplcache_snippets_dir='~/.vim/bundle/vim-snippets/snippets'
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
