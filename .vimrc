@@ -1,61 +1,21 @@
-"#####キーバインド#####
-"
-"ノーマル+ビジュアル  noremap  map
-"コマンド+インサート  noremap! map!
-"ノーマル　　　　　　 nnoremap nmap
-"ビジュアル           vnoremap vmap
-"コマンド             cnoremap cmap
-"インサート           inoremap imap
-":=;に変更
-nnoremap ; :
-"ノーマルモードでエンターキーで改行
-noremap <CR> o<ESC>>
-"ビジュアルモード時vで行末まで選択
-vnoremap v $h
-
-
-"#####表示設定#####
-set number "行番号を表示
-set title "編集中のファイル名を表示
-set showmatch "括弧入力時の対応する括弧を表示
-set tabstop=2 "インデントをスペース2つ分に設定
-set smartindent "オートインデント
-set shiftwidth=2 "オートインデント時のインデントする文字数
-set whichwrap=b,s,h,l,<,>,[,] "カーソルを行頭、行末で止まらないようにする
-set list
-set listchars=tab:>-,trail:~
-set cursorline "カーソルの行にライン
-"カラースキーマ設定
-syntax on
-colorscheme evening
 
 
 
 
-"#####検索設定#####
-set ignorecase "大文字、小文字の区別なく検索する
-set wrapscan   "検索時に最後まで行ったら最初に戻る
-set hlsearch   "ハイライト検索が有効
 
 
 
-"#####環境設定#####
-set noswapfile " .swapファイルを作らない
-set nowritebackup "バックアップファイルを作らない
-set nobackup "バックアップをしない
-"set mouse=a "マウスモード有効
-
-
-"#####プラグインマネージャー(NeoBundle)#####
+"##################プラグインマネージャー(NeoBundle)##################
 set nocompatible
 filetype off
 if has('vim_starting')
 	set runtimepath+=~/.vim/bundle/neobundle.vim
 	call neobundle#rc()
 endif
-"#########プラグインを記述##################
-" プラグイン管理
+"##################プラグインを記述##################
+
 NeoBundle 'Shougo/neobundle.vim'
+
 NeoBundle 'Shougo/vimproc', {
   \ 'build' : {
     \ 'windows' : 'make -f make_mingw32.mak',
@@ -66,14 +26,36 @@ NeoBundle 'Shougo/vimproc', {
 \ }
 
 NeoBundle 'VimClojure'
+
 NeoBundle 'Shougo/vimshell'
+
 NeoBundle 'Shougo/unite.vim'
 
-
-
 NeoBundle 'Shougo/neocomplcache'
+
 NeoBundle 'Shougo/neosnippet'
+
 NeoBundle 'Shougo/neosnippet-snippets'
+
+
+"NeoBundle 'jpalardy/vim-slime' よく分からないので今は削除
+
+NeoBundle 'scrooloose/syntastic'
+
+NeoBundle 'thinca/vim-quickrun'
+
+NeoBundle 'sjl/gundo.vim'
+
+"C++
+"Neobundle 'Shougo/neocomplcache-clang_complete' 不便を感じたら導入
+
+NeoBundle 'Rip-Rip/clang_complete'
+
+filetype plugin on
+filetype indent on
+
+
+"    neocomplcache setting
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_underbar_completion = 1
@@ -92,7 +74,9 @@ function! s:my_cr_function()
 	return neocomplcache#smart_close_popup() . "\<TAB>"
 endfunction
 
-"snippets用設定
+
+
+"    snippets setting
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neocomplcache_snippets_dir='~/.vim/bundle/vim-snippets/snippets'
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -101,20 +85,67 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 
 
 
-"NeoBundle 'jpalardy/vim-slime' よく分からないので今は削除
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'thinca/vim-quickrun'
+"    quickrun setting
 set splitbelow
 let g:quickrun_config={'*':{'split' : ''}}
 
-NeoBundle 'sjl/gundo.vim'
+
+
+"    gundo setting
 nmap <C-z> :<C-u>GundoToggle<CR>
 
-"C++
-"Neobundle 'Shougo/neocomplcache-clang_complete' 不便を感じたら導入
-NeoBundle 'Rip-Rip/clang_complete'
 
-filetype plugin on
-filetype indent on
 
+
+"##################キーバインド##################
+"ノーマル+ビジュアル  noremap  map
+"コマンド+インサート  noremap! map!
+"ノーマル　　　　　　 nnoremap nmap
+"ビジュアル           vnoremap vmap
+"コマンド             cnoremap cmap
+"インサート           inoremap imap
+":=;に変更
+nnoremap ; :
+"ノーマルモードでエンターキーで改行
+noremap <CR> o<ESC>>
+"ビジュアルモード時vで行末まで選択
+vnoremap v $h
+
+
+
+
+
+"##################表示設定##################
+set number "行番号を表示
+set title "編集中のファイル名を表示
+set showmatch "括弧入力時の対応する括弧を表示
+set tabstop=2 "インデントをスペース2つ分に設定
+set smartindent "オートインデント
+set shiftwidth=2 "オートインデント時のインデントする文字数
+set whichwrap=b,s,h,l,<,>,[,] "カーソルを行頭、行末で止まらないようにする
+set list
+set listchars=tab:>-,trail:~
+set cursorline "カーソルの行にライン
+"カラースキーマ設定
+syntax on
+colorscheme evening
+
+
+
+
+
+"##################検索設定##################
+set ignorecase "大文字、小文字の区別なく検索する
+set wrapscan   "検索時に最後まで行ったら最初に戻る
+set hlsearch   "ハイライト検索が有効
+
+
+
+
+
+"##################環境設定##################
+set noswapfile " .swapファイルを作らない
+set nowritebackup "バックアップファイルを作らない
+set nobackup "バックアップをしない
+"set mouse=a "マウスモード有効
 set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
