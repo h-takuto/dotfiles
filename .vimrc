@@ -108,7 +108,7 @@ set splitbelow
 let g:quickrun_config={'*':{'split' : ''}}
 
 NeoBundle 'sjl/gundo.vim'
-nmap Z :<C-u>GundoToggle<CR>
+nmap <C-z> :<C-u>GundoToggle<CR>
 
 "C++
 "Neobundle 'Shougo/neocomplcache-clang_complete' 不便を感じたら導入
