@@ -37,6 +37,7 @@ NeoBundle 'Shougo/neosnippet'
 
 NeoBundle 'Shougo/neosnippet-snippets'
 
+NeoBundle 'honza/vim-snippets'
 
 "NeoBundle 'jpalardy/vim-slime' よく分からないので今は削除
 
@@ -78,7 +79,7 @@ endfunction
 
 "    snippets setting
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neocomplcache_snippets_dir='~/.vim/bundle/vim-snippets/snippets'
+let g:neocomplcache_snippets_dir='~/.vim/bundle/vim-snippets/snippets,~/dotfiles/snippets'
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)

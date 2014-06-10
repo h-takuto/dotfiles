@@ -7,3 +7,6 @@
 	ad = add
 [core]
 	excludexfile = ~/.gitignore
+[user]
+	name = teari
+	email = businessandschool12345@gmail.com
