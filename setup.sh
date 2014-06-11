@@ -9,9 +9,9 @@ do
 done
 
 mkdir ~/.vim/bundle
-mkdir ~/.vim/template
 git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 
+mkdir ~/.vim/template
 for file in ${TEMPLATE_FILES[@]}
 do
 	ln -s $HOME/dotfiles/template/$file $HOME/.vim/template/$file
