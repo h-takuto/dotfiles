@@ -39,6 +39,9 @@ NeoBundle 'Shougo/neosnippet-snippets'
 
 NeoBundle 'honza/vim-snippets'
 
+NeoBundle 'thinca/vim-template'
+
+
 "NeoBundle 'jpalardy/vim-slime' よく分からないので今は削除
 
 NeoBundle 'scrooloose/syntastic'
@@ -98,6 +101,23 @@ nmap <C-z> :<C-u>GundoToggle<CR>
 
 
 
+"    vim-template
+" テンプレート中に含まれる特定の文字列を置き換える
+autocmd MyAutoCmd User plugin-template-loaded call s:template_keywords()
+function! s:template_keywords()
+silent! %s/<+DATA+>/\=strftime('%Y-%m-%d')/g
+silent! %s/<+FILENAME+>/\=expand('%:r')/g
+endfunction
+" テンプレート中に含まれる'<+CURSOR+>'にカーソルを移動
+autocmd MyAutoCmd User plugin-template-loaded
+  \  if search('<+CURSOR+>')
+  \|  silent! execute 'normal! "_da>'
+  \| endif
+
+
+
+
+
 "##################キーバインド##################
 "ノーマル+ビジュアル  noremap  map
 "コマンド+インサート  noremap! map!
@@ -150,3 +170,12 @@ set nowritebackup "バックアップファイルを作らない
 set nobackup "バックアップをしない
 "set mouse=a "マウスモード有効
 set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
+
+
+
+"##################言語ごとの設定##################
+
+"#######python######
+autocmd FileType python setl autoindent
+autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
