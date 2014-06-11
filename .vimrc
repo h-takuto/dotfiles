@@ -39,9 +39,6 @@ NeoBundle 'Shougo/neosnippet-snippets'
 
 NeoBundle 'honza/vim-snippets'
 
-NeoBundle 'thinca/vim-template'
-
-
 "NeoBundle 'jpalardy/vim-slime' よく分からないので今は削除
 
 NeoBundle 'scrooloose/syntastic'
@@ -99,20 +96,6 @@ let g:quickrun_config={'*':{'split' : ''}}
 nmap <C-z> :<C-u>GundoToggle<CR>
 
 
-
-
-"    vim-template
-" テンプレート中に含まれる特定の文字列を置き換える
-autocmd MyAutoCmd User plugin-template-loaded call s:template_keywords()
-function! s:template_keywords()
-silent! %s/<+DATA+>/\=strftime('%Y-%m-%d')/g
-silent! %s/<+FILENAME+>/\=expand('%:r')/g
-endfunction
-" テンプレート中に含まれる'<+CURSOR+>'にカーソルを移動
-autocmd MyAutoCmd User plugin-template-loaded
-  \  if search('<+CURSOR+>')
-  \|  silent! execute 'normal! "_da>'
-  \| endif
 
 
 
