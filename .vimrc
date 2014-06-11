@@ -79,7 +79,9 @@ endfunction
 
 "    snippets setting
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neocomplcache_snippets_dir='~/.vim/bundle/vim-snippets/snippets,~/dotfiles/snippets'
+let g:neocomplcache_snippets_dir='~/.vim/bundle/vim-snippets/snippets'
+let s:my_snippet = '~/dotfiles/snippets/'
+let g:neosnippet#snippets_directory = s:my_snippet
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
