@@ -4,7 +4,6 @@
 
 
 
-
 "##################プラグインマネージャー(NeoBundle)##################
 set nocompatible
 filetype off
@@ -116,8 +115,13 @@ nnoremap ; :
 noremap <CR> o<ESC>>
 "ビジュアルモード時vで行末まで選択
 vnoremap v $h
-
-
+"引用符、括弧の設定
+inoremap { {}<Left>
+inoremap [ []<Left>
+inoremap ( ()<Left>
+inoremap " ""<Left>
+inoremap ' ''<Left>
+inoremap < <><Left>
 
 
 
@@ -155,7 +159,8 @@ set nowritebackup "バックアップファイルを作らない
 set nobackup "バックアップをしない
 "set mouse=a "マウスモード有効
 set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
-
+set undofile "vimを閉じてもアンドゥが残る
+set undodir=~/
 
 
 "##################言語ごとの設定##################
