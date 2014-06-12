@@ -30,6 +30,8 @@ NeoBundle 'Shougo/vimshell'
 
 NeoBundle 'Shougo/unite.vim'
 
+NeoBundle 'Shougo/neomru.vim'
+
 NeoBundle 'Shougo/neocomplcache'
 
 NeoBundle 'Shougo/neosnippet'
@@ -46,6 +48,8 @@ NeoBundle 'thinca/vim-quickrun'
 
 NeoBundle 'sjl/gundo.vim'
 
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
 "C++
 "Neobundle 'Shougo/neocomplcache-clang_complete' 不便を感じたら導入
 
@@ -54,6 +58,27 @@ NeoBundle 'Rip-Rip/clang_complete'
 filetype plugin on
 filetype indent on
 
+
+
+"     unite setting
+let g:unite_enable_start_insert =1
+"バッファ一覧
+noremap <C-P> :Unite buffer<CR>
+"ファイル一覧
+noremap <C-N> :Unite -buffer-name=file file<CR>
+"最近使ったファイルの一覧
+noremap <C-Z> :Unite file_mru<CR>
+"sourcesを「今開いているファイルのディレクトリ」とする
+noremap  :uff :<C-U>UniteWithBufferDir file -buffer-name=file<CR>
+"ウインドウを横分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+"ウインドウを縦分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('vsplit')
+"ESCキーを２回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> :q<CR>
 
 "    neocomplcache setting
 let g:acp_enableAtStartup = 0
@@ -98,7 +123,8 @@ nmap <C-z> :<C-u>GundoToggle<CR>
 
 
 
-
+"    indent-guides setting
+let g:indent_guides_enable_on_vim_startup = 1
 
 
 
