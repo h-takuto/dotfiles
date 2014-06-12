@@ -115,13 +115,6 @@ nnoremap ; :
 noremap <CR> o<ESC>>
 "ビジュアルモード時vで行末まで選択
 vnoremap v $h
-"引用符、括弧の設定
-inoremap { {}<Left>
-inoremap [ []<Left>
-inoremap ( ()<Left>
-inoremap " ""<Left>
-inoremap ' ''<Left>
-inoremap < <><Left>
 
 
 
