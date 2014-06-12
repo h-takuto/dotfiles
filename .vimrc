@@ -152,8 +152,6 @@ set nowritebackup "バックアップファイルを作らない
 set nobackup "バックアップをしない
 "set mouse=a "マウスモード有効
 set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
-set undofile "vimを閉じてもアンドゥが残る
-set undodir=~/
 
 
 "##################言語ごとの設定##################
