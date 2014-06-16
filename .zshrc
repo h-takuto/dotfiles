@@ -113,3 +113,9 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 	export WORKON_HOME=$HOME/.virtualenvs
 	source `which virtualenvwrapper.sh`
 fi
+
+#.alias読み込み;
+if [ -f ~/.alias ]; then
+	source ~/.alias
+fi
+
