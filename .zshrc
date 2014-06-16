@@ -84,7 +84,7 @@ SPROMPT=$tmp_sprompt  # スペル訂正用プロンプト
 # Other Settings
 # ------------------------------
 
-### Aliases ###
+### Aliases (共通) ###
 alias rmrf='rm -r -f'
 alias rm='rm -i'
 alias cp='cp -i'
