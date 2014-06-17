@@ -1,9 +1,0 @@
-[alias]
-	co = checkout
-	cm = commit
-	st = status
-	br = branch
-	ba = branch -a
-	ad = add
-[core]
-	excludexfile = ~/.gitignore
