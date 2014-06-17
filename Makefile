@@ -8,6 +8,8 @@ vim: $(foreach f, $(filter .vim%, $(DOT_FILES)), link-dot-file-$(f))
 
 screen: $(foreach f, $(filter .screen%, $(DOT_FILES)), link-dot-file-$(f))
 
+git: $(foreach f, $(filter .git%, $(DOT_FILES)), link-dot-file-$(f))
+
 .PHONY: clean
 clean: $(foreach f, $(DOT_FILES), unlink-dot-file-$(f))
 
