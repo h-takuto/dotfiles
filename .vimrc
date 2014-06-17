@@ -3,7 +3,6 @@
 
 
 
-
 "##################プラグインマネージャー(NeoBundle)##################
 set nocompatible
 filetype off
@@ -49,6 +48,20 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'sjl/gundo.vim'
 
 NeoBundle 'nathanaelkane/vim-indent-guides'
+
+"Python
+"flake8を使い、pep8とコードの性的解析を行い、エディタ上にエラー箇所を表示する
+NeoBundle 'andviro/flake8-vim'
+"flake8などがQuickfixに出力した結果を使い、画面上にハイライト表示する
+NeoBundle 'cohama/vim-hier'
+"Quickfixの出力を使い、カーソル位置にエラーがあったら情報をステータスラインに表示する
+NeoBundle 'dannyob/quickfixstatus'
+"編集中のファイルにautopep8をかける
+NeoBundle 'tell-k/vim-autopep8'
+"演算子の両脇にスペースを挿入する。改行時は末尾のスペースを削除するなどの動作を定義できる。
+NeoBundle 'kana/vim-smartchr'
+
+NeoBundle 'kana/vim-smartinput'
 
 "C++
 "Neobundle 'Shougo/neocomplcache-clang_complete' 不便を感じたら導入
@@ -128,6 +141,24 @@ let g:indent_guides_enable_on_vim_startup = 1
 
 
 
+"    vim-hier quickfixstatus setting
+let g:PyFlakeOnWrite=1
+"無視する警告の種類
+"E501 => 行ごとの文字数制限、E121 => 事項のインデントは一つだけ、E303 => 改行の数が多すぎる
+let g:PyFlakeDisabledMessages = 'E501,E121,E303'
+"エラー行のマーカー。(hierがあればいらない)
+"let g:PyFlakeSigns = 0
+"flake8-autoをかけるためのコマンド。visual-modeでの範囲選択に対応
+let g:PyFlakeRangeCommand = 'Q'
+let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
+" McCabe複雑度の最大値
+let g:PyFlakeDefaultComplexity = 10
+" Be aggressive for autopep8
+let g:PyFlakeAggressive = 1
+
+
+
+
 "##################キーバインド##################
 "ノーマル+ビジュアル  noremap  map
 "コマンド+インサート  noremap! map!
@@ -150,7 +181,6 @@ set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
 set tabstop=2 "インデントをスペース2つ分に設定
 set smartindent "オートインデント
-set shiftwidth=2 "オートインデント時のインデントする文字数
 set whichwrap=b,s,h,l,<,>,[,] "カーソルを行頭、行末で止まらないようにする
 set list
 set listchars=tab:>-,trail:~
@@ -159,6 +189,19 @@ set cursorline "カーソルの行にライン
 syntax on
 colorscheme evening
 
+set nocompatible
+filetype plugin indent on
+syntax enable
+"set t_Co=256
+set fileformats=unix,dos
+set smarttab expandtab
+set shiftwidth=4 softtabstop=4
+set ambiwidth=double
+if has('path_extra')
+  set tags& tags+=.tags,tags
+endif
+set laststatus=2
+set showtabline=2
 
 
 
@@ -182,14 +225,3 @@ set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
 
 "##################言語ごとの設定##################
 
-"#######python######
-autocmd FileType python setl autoindent
-autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-
-
-
-"######C######
-autocmd FileType c setl autoindent
-autocmd FileType c setl smartindent cinwords=if,elseif,else,for,while,try
-autocmd FileType c setl tabstop=
