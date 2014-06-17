@@ -186,3 +186,10 @@ set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
 autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
+
+
+"######C######
+autocmd FileType c setl autoindent
+autocmd FileType c setl smartindent cinwords=if,elseif,else,for,while,try
+autocmd FileType c setl tabstop=
