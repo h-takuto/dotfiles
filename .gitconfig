@@ -1,0 +1,9 @@
+[alias]
+  st = status
+  sh = show
+  cm = commit
+  co = checout
+  br = branch
+  ba = branch -a
+[cora]
+  excludesfile = ~/.gitignore
