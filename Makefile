@@ -1,4 +1,4 @@
-DOT_FILES = .zshrc .vimrc .screenrc .gitignore
+DOT_FILES = .zshrc .vimrc .screenrc .gitignore .gitconfig
 
 all: zsh vim screen
 

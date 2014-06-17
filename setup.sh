@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=(.zshrc .vimrc .gitignore .screenrc)
+DOT_FILES=(.zshrc .vimrc .gitignore .gitconfig .screenrc)
 
 VIM_FILES=(python.vim javascript.vim)
 
