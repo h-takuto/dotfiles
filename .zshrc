@@ -95,11 +95,11 @@ alias -s rb=ruby
 alias hisa='history-all'
 
 ### git Aliases ###
-alias gco="git checkout"
-alias gbr="git branch"
-alias gba="git branch -a"
-alias gcm="git commit"
-alias gst="git status"
+#alias gco="git checkout"
+#alias gbr="git branch"
+#alias gba="git branch -a"
+#alias gcm="git commit"
+#alias gst="git status"
 
 case ${OSTYPE} in
 	darwin*)
