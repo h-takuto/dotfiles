@@ -2,7 +2,7 @@
 
 DOT_FILES=(.zshrc .vimrc .gitignore .gitconfig .screenrc)
 
-VIM_FILES=(python.vim javascript.vim)
+VIM_FILES=(python.vim javascript.vim google.vim)
 
 for file in ${DOT_FILES[@]}
 do
