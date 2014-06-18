@@ -68,6 +68,10 @@ NeoBundle 'kana/vim-smartinput'
 
 NeoBundle 'Rip-Rip/clang_complete'
 
+NeoBundle 'rhysd/vim-clang-format'
+
+NeoBundle 'kana/vim-operator-user'
+
 filetype plugin on
 filetype indent on
 
@@ -158,6 +162,9 @@ let g:PyFlakeAggressive = 1
 
 
 
+"    vim-clang-format setting
+
+
 
 "##################キーバインド##################
 "ノーマル+ビジュアル  noremap  map
@@ -224,4 +231,17 @@ set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
 
 
 "##################言語ごとの設定##################
+
+"###### C C++ Object-C######
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+autocmd FileType c,cpp,objc map ,x <Plug>(operator-clang-format)
+
+
+
+
+
+
+
 
