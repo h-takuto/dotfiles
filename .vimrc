@@ -64,13 +64,13 @@ NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
 
 "C++
-"Neobundle 'Shougo/neocomplcache-clang_complete' 不便を感じたら導入
-
 NeoBundle 'Rip-Rip/clang_complete'
 
 NeoBundle 'rhysd/vim-clang-format'
 
 NeoBundle 'kana/vim-operator-user'
+
+NeoBundle 'yogomi/vim-cpplint','runAlsoC'
 
 filetype plugin on
 filetype indent on
@@ -237,7 +237,7 @@ autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 autocmd FileType c,cpp,objc map ,x <Plug>(operator-clang-format)
-
+autocmd BufWritePost *.h,*.cpp,*.cc,*.c call Cpplint()
 
 
 
