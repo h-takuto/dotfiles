@@ -5,5 +5,6 @@
   co = checout
   br = branch
   ba = branch -a
+  pulr = pull --rebase origin master
 [cora]
   excludesfile = ~/.gitignore
