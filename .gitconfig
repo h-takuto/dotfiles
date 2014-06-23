@@ -2,7 +2,7 @@
   st = status
   sh = show
   cm = commit
-  co = checout
+  co = checkout
   br = branch
   ba = branch -a
   pulr = pull --rebase origin master
