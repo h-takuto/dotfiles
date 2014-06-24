@@ -215,12 +215,9 @@ syntax on
 colorscheme evening
 
 set nocompatible
-filetype plugin indent on
-syntax enable
-"set t_Co=256
 set fileformats=unix,dos
 set smarttab expandtab
-set shiftwidth=4 softtabstop=4
+set shiftwidth=2 softtabstop=2
 set ambiwidth=double
 if has('path_extra')
   set tags& tags+=.tags,tags
@@ -250,14 +247,12 @@ set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
 
 "##################言語ごとの設定##################
 
-"###### C C++ Object-C######
+"###### C C++ Object-C ######
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 autocmd FileType c,cpp,objc map ,x <Plug>(operator-clang-format)
 autocmd BufWritePost *.h,*.cpp,*.cc,*.c call Cpplint()
-
-
 
 
 
