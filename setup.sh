@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 DOT_FILES=(.zshrc .vimrc .gitignore .gitconfig .screenrc)
 
@@ -9,8 +9,8 @@ BIN_FILES=(cpplint.py)
 #######ディレクトリ操作#######
 git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 
-cp  -p after $HOME/.vim/
-cp  -p bin $HOME/
+cp -r after $HOME/.vim/
+cp  -r bin $HOME/
 
 ######リンク######
 for file in ${DOT_FILES[@]}
