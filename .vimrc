@@ -49,6 +49,12 @@ NeoBundle 'sjl/gundo.vim'
 
 NeoBundle 'nathanaelkane/vim-indent-guides'
 
+NeoBundle 'kana/vim-smartchr'
+
+"NeoBundle 'kana/vim-smartinput'
+"入力を簡単にできるようになるが今は設定ができないので削除
+
+
 "Python
 "flake8を使い、pep8とコードの性的解析を行い、エディタ上にエラー箇所を表示する
 NeoBundle 'andviro/flake8-vim'
@@ -59,9 +65,7 @@ NeoBundle 'dannyob/quickfixstatus'
 "編集中のファイルにautopep8をかける
 NeoBundle 'tell-k/vim-autopep8'
 "演算子の両脇にスペースを挿入する。改行時は末尾のスペースを削除するなどの動作を定義できる。
-NeoBundle 'kana/vim-smartchr'
 
-NeoBundle 'kana/vim-smartinput'
 
 "C++
 NeoBundle 'Rip-Rip/clang_complete'
@@ -163,6 +167,20 @@ let g:PyFlakeAggressive = 1
 
 
 "    vim-clang-format setting
+
+
+
+
+
+"   vim-smartchr setting
+"書き方： 入力記号 smartchr#loop('一回目', '二回目'...)
+inoremap <expr> = smartchr#loop(' = ', ' == ', '=')
+inoremap <expr> , smartchr#loop(', ', ',')
+inoremap <expr> + smartchr#loop(' + ', '+')
+inoremap <expr> - smartchr#loop(' - ', '-')
+
+"   vim-smartinput setting
+
 
 
 
