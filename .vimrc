@@ -7,8 +7,8 @@
 set nocompatible
 filetype off
 if has('vim_starting')
-	set runtimepath+=~/.vim/bundle/neobundle.vim
-	call neobundle#rc()
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+  call neobundle#rc()
 endif
 "##################プラグインを記述##################
 
@@ -23,7 +23,6 @@ NeoBundle 'Shougo/vimproc', {
   \ },
 \ }
 
-NeoBundle 'VimClojure'
 
 NeoBundle 'Shougo/vimshell'
 
@@ -39,9 +38,11 @@ NeoBundle 'Shougo/neosnippet-snippets'
 
 NeoBundle 'honza/vim-snippets'
 
-"NeoBundle 'jpalardy/vim-slime' よく分からないので今は削除
+"よくわからないので削除
+"NeoBundle 'jpalardy/vim-slime'
 
-NeoBundle 'scrooloose/syntastic'
+"cpplint.pyと競合している？ので削除
+"NeoBundle 'scrooloose/syntastic'
 
 NeoBundle 'thinca/vim-quickrun'
 
@@ -51,9 +52,13 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 
 NeoBundle 'kana/vim-smartchr'
 
-"NeoBundle 'kana/vim-smartinput'
-"入力を簡単にできるようになるが今は設定ができないので削除
+"clojureの開発環境が使えるらしい
+"NeoBundle 'VimClojure'
 
+"入力を簡単にできるようになるが今は設定ができないので削除
+"NeoBundle 'kana/vim-smartinput'
+
+NeoBundle 'scrooloose/nerdtree'
 
 "Python
 "flake8を使い、pep8とコードの性的解析を行い、エディタ上にエラー箇所を表示する
@@ -101,6 +106,8 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> :q<CR>
 
+
+
 "    neocomplcache setting
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
@@ -117,7 +124,7 @@ smap <C-k> <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 function! s:my_cr_function()
-	return neocomplcache#smart_close_popup() . "\<TAB>"
+  return neocomplcache#smart_close_popup() . "\<TAB>"
 endfunction
 
 
@@ -166,20 +173,20 @@ let g:PyFlakeAggressive = 1
 
 
 
-"    vim-clang-format setting
-
-
-
-
-
 "   vim-smartchr setting
 "書き方： 入力記号 smartchr#loop('一回目', '二回目'...)
-inoremap <expr> = smartchr#loop(' = ', ' == ', '=')
+inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
 inoremap <expr> , smartchr#loop(', ', ',')
 inoremap <expr> + smartchr#loop(' + ', '+')
 inoremap <expr> - smartchr#loop(' - ', '-')
 
-"   vim-smartinput setting
+
+
+"   syntastic setting
+"let g:syntastic_enable_signs=1
+"let g:syntastic_auto_loc_list=2
+
+
 
 
 
@@ -202,18 +209,21 @@ vnoremap v $h
 
 "##################表示設定##################
 set number "行番号を表示
-set title "編集中のファイル名を表示
+set notitle "vimを使ってくれてありがとう
 set showmatch "括弧入力時の対応する括弧を表示
-set tabstop=2 "インデントをスペース2つ分に設定
 set smartindent "オートインデント
 set whichwrap=b,s,h,l,<,>,[,] "カーソルを行頭、行末で止まらないようにする
 set list
 set listchars=tab:>-,trail:~
 set cursorline "カーソルの行にライン
+set scrolloff=5 "スクロール時の余白確保
+set wildmenu "コマンド補完を強化
+
 "カラースキーマ設定
 syntax on
 colorscheme evening
 
+set tabstop=2 "インデントをスペース2つ分に設定
 set nocompatible
 set fileformats=unix,dos
 set smarttab expandtab
@@ -225,14 +235,21 @@ endif
 set laststatus=2
 set showtabline=2
 
-
+"最後のカーソル位置を復元する
+if has("autocmd")
+  autocmd BufReadPost *
+        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+        \   exe "normal! g'\"" |
+        \ endif
+endif
 
 
 "##################検索設定##################
 set ignorecase "大文字、小文字の区別なく検索する
+set smartcase  "検索文字列に大文字が含まれている場合は区別して検索する
 set wrapscan   "検索時に最後まで行ったら最初に戻る
 set hlsearch   "ハイライト検索が有効
-
+set incsearch  "インクリメントサーチ
 
 
 
@@ -243,6 +260,13 @@ set nowritebackup "バックアップファイルを作らない
 set nobackup "バックアップをしない
 "set mouse=a "マウスモード有効
 set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
+"insertモードを抜けるとIMEオフ
+set noimdisable
+set iminsert=0 imsearch=0
+set noimcmdline
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+
+
 
 
 "##################言語ごとの設定##################
