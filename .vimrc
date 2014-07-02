@@ -177,8 +177,8 @@ let g:PyFlakeAggressive = 1
 "書き方： 入力記号 smartchr#loop('一回目', '二回目'...)
 inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
 inoremap <expr> , smartchr#loop(', ', ',')
-inoremap <expr> + smartchr#loop(' + ', '+')
-inoremap <expr> - smartchr#loop(' - ', '-')
+inoremap <expr> + smartchr#loop(' + ', '+', '++')
+inoremap <expr> - smartchr#loop(' - ', '-', '--')
 
 
 
