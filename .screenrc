@@ -21,3 +21,8 @@ bind windowlist	#
 bind | eval 'split -v' focus screen
 #横分割後移動し、起動
 bind S eval 'split' focus screen
+#画面下部にscreenの状態を表示するようにする
+hardstatus alwayslastline "%`%-w%{=b bw}%n %t%{-}%+w"
+#screen名を、現在の使用コマンドにする
+PS1='\033k\033\\[\u@\h \W]\$ '
+
