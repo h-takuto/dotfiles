@@ -22,5 +22,7 @@ bind | eval 'split -v' focus screen
 bind S eval 'split' focus screen
 
 #hardstatus
+#画面下部にscreenの状態を表示するようにする
 hardstatus alwayslastline '%{= kw}%02c:%s %{= .y}%H %L=%{= .b}%-w%46>%{= .r}%n %t*%{= .b}%+w%-16<%=%{= .y}[%l]'
+#現在実行中のコマンドまたはカレントディレクトリを表示
 cption always "%?%F%{= wk}%:%{= ww}%?%-w%{=u Wk}%n %t%{-}%+w"
