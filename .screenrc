@@ -11,7 +11,6 @@ escape ^Jj
 #スクリーンを起動した際のメッセージなし
 startup_message off
 vbell off
-caption always "%{= wb} %-w%{=bu dr}%n %t%{-}%w %= %{=b wb}%y/%m/%d(%D) %{=b wm}%C"
 #ctrl+aのあとのキーイベントの配置を変更
 bind n screen	#ターミナル起動
 bind h prev		#表示するターミナルを変更（戻る）
@@ -21,3 +20,7 @@ bind windowlist	#
 bind | eval 'split -v' focus screen
 #横分割後移動し、起動
 bind S eval 'split' focus screen
+
+#hardstatus
+hardstatus alwayslastline '%{= kw}%02c:%s %{= .y}%H %L=%{= .b}%-w%46>%{= .r}%n %t*%{= .b}%+w%-16<%=%{= .y}[%l]'
+cption always "%?%F%{= wk}%:%{= ww}%?%-w%{=u Wk}%n %t%{-}%+w"

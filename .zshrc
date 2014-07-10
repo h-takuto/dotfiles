@@ -63,6 +63,24 @@ tmp_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
 tmp_rprompt="%{${fg[green]}%}[%~]%{${reset_color}%}"
 tmp_sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
 
+### screen ###
+#setopt prompt_subst
+#RPROMPT='%{${fg[green]}%}%/%{$reset_color%}'
+#common_precmd() {
+#  LANG=en_US.UTF-8 vcs_info
+#  LOADAVG=$(sysctl -n vm.loadavg | perl -anpe '$_=$F[1]')
+#  PROMPT='${vcs_info_msg_0_}%{${fg[yellow]}%}%* ($LOADAVG) %%%{$reset_color%} '
+#}
+case "${TERM}" in screen)
+    preexec() {
+      echo -ne "\ek#${1%% *}\e\\"
+    }
+    precmd() {
+      echo -ne "\ek$(basename $(pwd))\e\\"
+    }
+esac
+
+
 # rootユーザ時(太字にし、アンダーバーをつける)
 if [ ${UID} -eq 0 ]; then
   tmp_prompt="%B%U${tmp_prompt}%u%b"
