@@ -173,13 +173,6 @@ let g:PyFlakeAggressive = 1
 
 
 
-"   vim-smartchr setting
-"書き方： 入力記号 smartchr#loop('一回目', '二回目'...)
-inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
-inoremap <expr> , smartchr#loop(', ', ',')
-inoremap <expr> + smartchr#loop(' + ', '+', '++')
-inoremap <expr> - smartchr#loop(' - ', '-', '--')
-
 
 
 "   syntastic setting
@@ -273,6 +266,12 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 autocmd FileType c,cpp,objc map ,x <Plug>(operator-clang-format)
 autocmd BufWritePost *.h,*.cpp,*.cc,*.c call Cpplint()
+"   vim-smartchr setting
+"書き方： 入力記号 smartchr#loop('一回目', '二回目'...)
+autocmd FileType c,cpp,objc inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
+autocmd FileType c,cpp,objc inoremap <expr> , smartchr#loop(', ', ',')
+autocmd FileType c,cpp,objc inoremap <expr> + smartchr#loop(' + ', '+', '++')
+autocmd FileType c,cpp,objc inoremap <expr> - smartchr#loop(' - ', '-', '--')
 
 
 
