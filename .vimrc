@@ -151,11 +151,6 @@ nmap <C-z> :<C-u>GundoToggle<CR>
 
 
 
-"    indent-guides setting
-let g:indent_guides_enable_on_vim_startup = 1
-
-
-
 "    vim-hier quickfixstatus setting
 let g:PyFlakeOnWrite=1
 "無視する警告の種類
@@ -182,6 +177,20 @@ let g:PyFlakeAggressive = 1
 
 
 
+"     vim-indent-guides setting
+" vim 起動時 vim-indent-guides を自動起動
+"let g:indent_guides_enable_on_vim_startup=1
+" ガイドをスタートするインデントの量
+let g:indent_guides_start_level=2
+" 自動カラー無効
+let g:indent_guides_auto_colors = 0
+" 奇数番目のインデントの色
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=6
+" 偶数番目のインデントの色
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=1
+" ガイドの幅
+let g:indent_guides_guide_size=2
+
 
 
 "##################キーバインド##################
@@ -197,6 +206,7 @@ nnoremap ; :
 noremap <CR> o<ESC>>
 "ビジュアルモード時vで行末まで選択
 vnoremap v $h
+
 
 
 
