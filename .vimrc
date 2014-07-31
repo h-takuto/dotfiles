@@ -92,23 +92,20 @@ filetype indent on
 
 "     unite setting
 let g:unite_enable_start_insert =1
+let g:unite_source_history_yank_enaable=1
+let g:unite_source_file_mru_limit=200
+" ヤンクの履歴
+nnoremap <silent> ,ur :<C-u>Unite history/yank<CR>
 "バッファ一覧
-noremap <C-P> :Unite buffer<CR>
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 "ファイル一覧
-noremap <C-N> :Unite -buffer-name=file file<CR>
-"最近使ったファイルの一覧
-noremap <C-Z> :Unite file_mru<CR>
+nnoremap <silent> ,uf :<C-u>Unite -buffer-name=file file<CR>
 "sourcesを「今開いているファイルのディレクトリ」とする
-noremap  :uff :<C-U>UniteWithBufferDir file -buffer-name=file<CR>
-"ウインドウを横分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-"ウインドウを縦分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('vsplit')
-"ESCキーを２回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> :q<CR>
+nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+"
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+
+
 
 
 
