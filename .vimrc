@@ -60,6 +60,9 @@ NeoBundle 'kana/vim-smartchr'
 
 NeoBundle 'scrooloose/nerdtree'
 
+"help日本語
+NeoBundle 'vim-jp/vimdoc-ja'
+
 "Python
 "flake8を使い、pep8とコードの性的解析を行い、エディタ上にエラー箇所を表示する
 NeoBundle 'andviro/flake8-vim'
@@ -84,7 +87,8 @@ NeoBundle 'yogomi/vim-cpplint','runAlsoC'
 filetype plugin on
 filetype indent on
 
-
+"     vim-jp setting
+:set helplang=ja,en
 
 "     unite setting
 let g:unite_enable_start_insert =1
@@ -284,6 +288,7 @@ autocmd FileType c,cpp,objc inoremap <expr> + smartchr#loop(' + ', '+', '++')
 autocmd FileType c,cpp,objc inoremap <expr> - smartchr#loop(' - ', '-', '--')
 
 
-
+"###### html ######
+autocmd FileType html :set noexpandtab
 
 
