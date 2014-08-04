@@ -269,21 +269,21 @@ set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
 "##################言語ごとの設定##################
 autocmd BufEnter * if &filetype == "python" | call InitPython() | endif
 autocmd BufEnter * if &filetype == "c" | call InitC_Cpp_Objc() | endif
-
+autocmd BufEnter * if &filetype == "html" | call InitC_Cpp_Objc() | endif
 
 "###### C C++ Object-C ######
 function! InitC_Cpp_Objc()
-  autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-  autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-  autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
-  autocmd FileType c,cpp,objc map ,x <Plug>(operator-clang-format)
+  nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+  vnoremap <buffer><Leader>cf :ClangFormat<CR>
+  map <buffer><Leader>x <Plug>(operator-clang-format)
+  map ,x <Plug>(operator-clang-format)
   autocmd BufWritePost *.h,*.cpp,*.cc,*.c call Cpplint()
   "   vim-smartchr setting
   "書き方： 入力記号 smartchr#loop('一回目', '二回目'...)
-  autocmd FileType c,cpp,objc inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
-  autocmd FileType c,cpp,objc inoremap <expr> , smartchr#loop(', ', ',')
-  autocmd FileType c,cpp,objc inoremap <expr> + smartchr#loop(' + ', '+', '++')
-  autocmd FileType c,cpp,objc inoremap <expr> - smartchr#loop(' - ', '-', '--')
+  inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
+  inoremap <expr> , smartchr#loop(', ', ',')
+  inoremap <expr> + smartchr#loop(' + ', '+', '++')
+  inoremap <expr> - smartchr#loop(' - ', '-', '--')
 
   let g:indent_guides_start_level=1
   let g:indent_guides_auto_colors = 0
@@ -293,8 +293,16 @@ function! InitC_Cpp_Objc()
 
 endfunction
 
+
+
+
 "###### html ######
-autocmd FileType html :set noexpandtab
+function! Inithtml()
+  autocmd FileType html :set noexpandtab
+endfunction
+
+
+
 
 "###### Python #######"
 function! InitPython()
@@ -314,12 +322,11 @@ function! InitPython()
   let g:indent_guides_guide_size=4
   IndentGuidesEnable
 
-  autocmd FileType c,cpp,objc inoremap <expr> , smartchr#loop(', ', ',')
-  autocmd FileType c,cpp,objc inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
-  autocmd FileType c,cpp,objc inoremap <expr> + smartchr#loop(' + ', '+', '++')
-  autocmd FileType c,cpp,objc inoremap <expr> - smartchr#loop(' - ', '-', '--')
+  inoremap <expr> , smartchr#loop(', ', ',')
+  inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
+  inoremap <expr> + smartchr#loop(' + ', '+', '++')
+  inoremap <expr> - smartchr#loop(' - ', '-', '--')
 endfunction
 
-autocmd BufEnter * if &filetype == "python" | call InitPython() | endif
 
 
