@@ -182,15 +182,15 @@ let g:PyFlakeAggressive = 1
 " vim 起動時 vim-indent-guides を自動起動
 "let g:indent_guides_enable_on_vim_startup=1
 " ガイドをスタートするインデントの量
-let g:indent_guides_start_level=2
+"let g:indent_guides_start_level=2
 " 自動カラー無効
-let g:indent_guides_auto_colors = 0
+"let g:indent_guides_auto_colors = 0
 " 奇数番目のインデントの色
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=6
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=6
 " 偶数番目のインデントの色
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=1
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=1
 " ガイドの幅
-let g:indent_guides_guide_size=2
+"let g:indent_guides_guide_size=2
 
 
 
@@ -267,25 +267,59 @@ set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
 
 
 "##################言語ごとの設定##################
-
-
+autocmd BufEnter * if &filetype == "python" | call InitPython() | endif
+autocmd BufEnter * if &filetype == "c" | call InitC_Cpp_Objc() | endif
 
 
 "###### C C++ Object-C ######
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
-autocmd FileType c,cpp,objc map ,x <Plug>(operator-clang-format)
-autocmd BufWritePost *.h,*.cpp,*.cc,*.c call Cpplint()
-"   vim-smartchr setting
-"書き方： 入力記号 smartchr#loop('一回目', '二回目'...)
-autocmd FileType c,cpp,objc inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
-autocmd FileType c,cpp,objc inoremap <expr> , smartchr#loop(', ', ',')
-autocmd FileType c,cpp,objc inoremap <expr> + smartchr#loop(' + ', '+', '++')
-autocmd FileType c,cpp,objc inoremap <expr> - smartchr#loop(' - ', '-', '--')
+function! InitC_Cpp_Objc()
+  autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+  autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+  autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+  autocmd FileType c,cpp,objc map ,x <Plug>(operator-clang-format)
+  autocmd BufWritePost *.h,*.cpp,*.cc,*.c call Cpplint()
+  "   vim-smartchr setting
+  "書き方： 入力記号 smartchr#loop('一回目', '二回目'...)
+  autocmd FileType c,cpp,objc inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
+  autocmd FileType c,cpp,objc inoremap <expr> , smartchr#loop(', ', ',')
+  autocmd FileType c,cpp,objc inoremap <expr> + smartchr#loop(' + ', '+', '++')
+  autocmd FileType c,cpp,objc inoremap <expr> - smartchr#loop(' - ', '-', '--')
 
+  let g:indent_guides_start_level=1
+  let g:indent_guides_auto_colors = 0
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=6
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=1
+  let g:indent_guides_guide_size=2
+
+endfunction
 
 "###### html ######
 autocmd FileType html :set noexpandtab
+
+"###### Python #######"
+function! InitPython()
+  setlocal shiftwidth=4
+  setlocal tabstop=8
+  setlocal softtabstop=4
+  setlocal expandtab
+
+  setlocal autoindent
+  setlocal smartindent
+  setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
+
+  let g:indent_guides_start_level=1
+  let g:indent_guides_auto_colors = 0
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=6
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=1
+  let g:indent_guides_guide_size=4
+  IndentGuidesEnable
+
+  autocmd FileType c,cpp,objc inoremap <expr> , smartchr#loop(', ', ',')
+  autocmd FileType c,cpp,objc inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
+  autocmd FileType c,cpp,objc inoremap <expr> + smartchr#loop(' + ', '+', '++')
+  autocmd FileType c,cpp,objc inoremap <expr> - smartchr#loop(' - ', '-', '--')
+endfunction
+
+autocmd BufEnter * if &filetype == "python" | call InitPython() | endif
 
 
