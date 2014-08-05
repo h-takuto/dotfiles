@@ -63,6 +63,21 @@ NeoBundle 'scrooloose/nerdtree'
 "help日本語
 NeoBundle 'vim-jp/vimdoc-ja'
 
+"カラースキーム
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'croaker/mustang-vim'
+NeoBundle 'jeffreyiacono/vim-colors-wombat'
+NeoBundle 'vim-scripts/Zenburn'
+NeoBundle 'vim-scripts/Lucius'
+NeoBundle 'mrkn/mrkn256.vim'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'therubymug/vim-pyte'
+NeoBundle 'tomasr/molokai'
+"カラースキーム一覧表示にUnite.vimを使う
+NeoBundle 'ujihisa/unite-colorscheme'
+
+
 "Python
 "flake8を使い、pep8とコードの性的解析を行い、エディタ上にエラー箇所を表示する
 NeoBundle 'andviro/flake8-vim'
@@ -194,6 +209,8 @@ let g:PyFlakeAggressive = 1
 
 
 
+
+
 "##################キーバインド##################
 "ノーマル+ビジュアル  noremap  map
 "コマンド+インサート  noremap! map!
@@ -226,6 +243,8 @@ set wildmenu "コマンド補完を強化
 "カラースキーマ設定
 syntax on
 colorscheme evening
+
+
 
 set tabstop=2 "インデントをスペース2つ分に設定
 set nocompatible
@@ -264,6 +283,19 @@ set nowritebackup "バックアップファイルを作らない
 set nobackup "バックアップをしない
 "set mouse=a "マウスモード有効
 set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
+
+
+"#################OSごとの設定###############
+let OSTYPE = system('uname')
+
+if OSTYPE == "Darwin\n"
+  "以下Macの設定
+  colorscheme evening
+elseif OSTYPE == "Linux\n"
+  "以下linuxの設定
+endif
+
+
 
 
 "##################言語ごとの設定##################
