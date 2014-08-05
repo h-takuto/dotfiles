@@ -269,7 +269,7 @@ set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
 "##################言語ごとの設定##################
 autocmd BufEnter * if &filetype == "python" | call InitPython() | endif
 autocmd BufEnter * if &filetype == "c" | call InitC_Cpp_Objc() | endif
-autocmd BufEnter * if &filetype == "html" | call InitC_Cpp_Objc() | endif
+autocmd BufEnter * if &filetype == "html" | call Inithtml() | endif
 
 "###### C C++ Object-C ######
 function! InitC_Cpp_Objc()
@@ -298,7 +298,7 @@ endfunction
 
 "###### html ######
 function! Inithtml()
-  autocmd FileType html :set noexpandtab
+  set noexpandtab
 endfunction
 
 
