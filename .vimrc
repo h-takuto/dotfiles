@@ -67,7 +67,9 @@ NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'croaker/mustang-vim'
+NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'jeffreyiacono/vim-colors-wombat'
+NeoBundle 'vim-scripts/twilight'
 NeoBundle 'vim-scripts/Zenburn'
 NeoBundle 'vim-scripts/Lucius'
 NeoBundle 'mrkn/mrkn256.vim'
@@ -75,6 +77,7 @@ NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
 "カラースキーム一覧表示にUnite.vimを使う
+":Unite colorscheme -auto-preview
 NeoBundle 'ujihisa/unite-colorscheme'
 
 
@@ -240,10 +243,6 @@ set cursorline "カーソルの行にライン
 set scrolloff=5 "スクロール時の余白確保
 set wildmenu "コマンド補完を強化
 
-"カラースキーマ設定
-syntax on
-colorscheme evening
-
 
 
 set tabstop=2 "インデントをスペース2つ分に設定
@@ -290,9 +289,12 @@ let OSTYPE = system('uname')
 
 if OSTYPE == "Darwin\n"
   "以下Macの設定
+  syntax on
   colorscheme evening
 elseif OSTYPE == "Linux\n"
   "以下linuxの設定
+  syntax on
+  colorscheme evening
 endif
 
 
