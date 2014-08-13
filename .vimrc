@@ -240,7 +240,7 @@ set whichwrap=b,s,h,l,<,>,[,] "カーソルを行頭、行末で止まらない�
 set list
 set listchars=tab:>-,trail:~
 set cursorline "カーソルの行にライン
-set scrolloff=5 "スクロール時の余白確保
+set scrolloff=15 "スクロール時の余白確保
 set wildmenu "コマンド補完を強化
 
 
