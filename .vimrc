@@ -295,6 +295,8 @@ elseif OSTYPE == "Linux\n"
   "以下linuxの設定
   syntax on
   colorscheme evening
+  "ESCでIMEをOFF
+  inoremap <ESC> <ESC>:set iminsert=0<CR>
 endif
 
 
