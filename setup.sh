@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=(.zshrc .vimrc .gitignore .gitconfig .screenrc)
+DOT_FILES=(.zshrc .vimrc .gitignore .gitconfig .screenrc .xvimrc)
 
 #######ディレクトリ操作#######
 git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim

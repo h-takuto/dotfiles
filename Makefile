@@ -1,10 +1,12 @@
-DOT_FILES = .zshrc .vimrc .screenrc .gitignore .gitconfig
+DOT_FILES = .zshrc .vimrc .screenrc .gitignore .gitconfig .xvimrc
 
 all: zsh vim screen
 
 zsh: $(foreach f, $(filter .zsh%, $(DOT_FILES)), link-dot-file-$(f))
 
 vim: $(foreach f, $(filter .vim%, $(DOT_FILES)), link-dot-file-$(f))
+
+xvim: $(foreach f, $(filter .xvim% $(DOT_FILES)), link-dot-file-$(f))
 
 screen: $(foreach f, $(filter .screen%, $(DOT_FILES)), link-dot-file-$(f))
 
