@@ -125,6 +125,7 @@ case ${OSTYPE} in
 		export CLICOLOR=1
 		alias ls='ls -G -F'
 		alias la='ls -a'
+    alias xcode='open -n /Applications/Xcode.app'
 		#日本語ファイル名を表示可能にする
 		setopt print_eight_bit
 		;;

@@ -1,0 +1,17 @@
+
+"keybind
+vnoremap v $h
+nnoremap ; :
+
+"search
+set hlsearch "ハイライト検索
+set incsearch "インクリメントサーチ
+
+"edit
+set whichwrap=b,s,h,l,<,>,[,] "カーソルを行頭、行末で止まらないようにする
+
+"config
+set noswapfile
+set nowritebackup
+set nobackup
+
