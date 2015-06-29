@@ -6,15 +6,18 @@
 "##################プラグインマネージャー(NeoBundle)##################
 set nocompatible
 filetype off
+if 0 | endif
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc()
+  if &compatible
+    set nocompatible
+  endif
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+
+call neobundle#begin(expand('~/.vim/bundle.vim'))
 "##################プラグインを記述##################
-
-NeoBundle 'Shougo/neobundle.vim'
-
-NeoBundle 'Shougo/vimproc', {
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/vimproc', {
   \ 'build' : {
     \ 'windows' : 'make -f make_mingw32.mak',
     \ 'cygwin' : 'make -f make_cygwin.mak',
@@ -22,88 +25,64 @@ NeoBundle 'Shougo/vimproc', {
     \ 'unix' : 'make -f make_unix.mak',
   \ },
 \ }
-
-
-NeoBundle 'Shougo/vimshell'
-
-NeoBundle 'Shougo/unite.vim'
-
-NeoBundle 'Shougo/neomru.vim'
-
-NeoBundle 'Shougo/neocomplcache'
-
-NeoBundle 'Shougo/neosnippet'
-
-NeoBundle 'Shougo/neosnippet-snippets'
-
-NeoBundle 'honza/vim-snippets'
-
+NeoBundleFetch 'Shougo/vimshell'
+NeoBundleFetch 'Shougo/unite.vim'
+NeoBundleFetch 'Shougo/neomru.vim'
+NeoBundleFetch 'Shougo/neocomplcache'
+NeoBundleFetch 'Shougo/neosnippet'
+NeoBundleFetch 'Shougo/neosnippet-snippets'
+NeoBundleFetch 'honza/vim-snippets'
 "よくわからないので削除
 "NeoBundle 'jpalardy/vim-slime'
-
 "cpplint.pyと競合している？ので削除
 "NeoBundle 'scrooloose/syntastic'
-
-NeoBundle 'thinca/vim-quickrun'
-
-NeoBundle 'sjl/gundo.vim'
-
-NeoBundle 'nathanaelkane/vim-indent-guides'
-
-NeoBundle 'kana/vim-smartchr'
-
+NeoBundleFetch 'thinca/vim-quickrun'
+NeoBundleFetch 'sjl/gundo.vim'
+NeoBundleFetch 'nathanaelkane/vim-indent-guides'
+NeoBundleFetch 'kana/vim-smartchr'
 "clojureの開発環境が使えるらしい
 "NeoBundle 'VimClojure'
-
 "入力を簡単にできるようになるが今は設定ができないので削除
 "NeoBundle 'kana/vim-smartinput'
-
-NeoBundle 'scrooloose/nerdtree'
-
+NeoBundleFetch 'scrooloose/nerdtree'
 "help日本語
-NeoBundle 'vim-jp/vimdoc-ja'
-
+NeoBundleFetch 'vim-jp/vimdoc-ja'
 "カラースキーム
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'croaker/mustang-vim'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'jeffreyiacono/vim-colors-wombat'
-NeoBundle 'vim-scripts/twilight'
-NeoBundle 'vim-scripts/Zenburn'
-NeoBundle 'vim-scripts/Lucius'
-NeoBundle 'mrkn/mrkn256.vim'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'therubymug/vim-pyte'
-NeoBundle 'tomasr/molokai'
+NeoBundleFetch 'nanotech/jellybeans.vim'
+NeoBundleFetch 'altercation/vim-colors-solarized'
+NeoBundleFetch 'croaker/mustang-vim'
+NeoBundleFetch 'w0ng/vim-hybrid'
+NeoBundleFetch 'jeffreyiacono/vim-colors-wombat'
+NeoBundleFetch 'vim-scripts/twilight'
+NeoBundleFetch 'vim-scripts/Zenburn'
+NeoBundleFetch 'vim-scripts/Lucius'
+NeoBundleFetch 'mrkn/mrkn256.vim'
+NeoBundleFetch 'jpo/vim-railscasts-theme'
+NeoBundleFetch 'therubymug/vim-pyte'
+NeoBundleFetch 'tomasr/molokai'
 "カラースキーム一覧表示にUnite.vimを使う
 ":Unite colorscheme -auto-preview
-NeoBundle 'ujihisa/unite-colorscheme'
-
-
+NeoBundleFetch 'ujihisa/unite-colorscheme'
 "Python
 "flake8を使い、pep8とコードの性的解析を行い、エディタ上にエラー箇所を表示する
-NeoBundle 'andviro/flake8-vim'
+NeoBundleFetch 'andviro/flake8-vim'
 "flake8などがQuickfixに出力した結果を使い、画面上にハイライト表示する
-NeoBundle 'cohama/vim-hier'
+NeoBundleFetch 'cohama/vim-hier'
 "Quickfixの出力を使い、カーソル位置にエラーがあったら情報をステータスラインに表示する
-NeoBundle 'dannyob/quickfixstatus'
+NeoBundleFetch 'dannyob/quickfixstatus'
 "編集中のファイルにautopep8をかける
-NeoBundle 'tell-k/vim-autopep8'
+NeoBundleFetch 'tell-k/vim-autopep8'
 "演算子の両脇にスペースを挿入する。改行時は末尾のスペースを削除するなどの動作を定義できる。
-
-
 "C++
-NeoBundle 'Rip-Rip/clang_complete'
+NeoBundleFetch 'Rip-Rip/clang_complete'
+NeoBundleFetch 'rhysd/vim-clang-format'
+NeoBundleFetch 'kana/vim-operator-user'
+NeoBundleFetch 'yogomi/vim-cpplint','runAlsoC'
 
-NeoBundle 'rhysd/vim-clang-format'
 
-NeoBundle 'kana/vim-operator-user'
-
-NeoBundle 'yogomi/vim-cpplint','runAlsoC'
-
-filetype plugin on
-filetype indent on
+call neobundle#end()
+filetype plugin indent on
+NeoBundleCheck
 
 "     vim-jp setting
 :set helplang=ja,en
@@ -242,7 +221,8 @@ set listchars=tab:>-,trail:~
 set cursorline "カーソルの行にライン
 set scrolloff=15 "スクロール時の余白確保
 set wildmenu "コマンド補完を強化
-
+set encoding=utf-8
+set fileencodings=utf-8,cp932,sjis,euc-jp,iso-2022-jp
 
 
 set tabstop=2 "インデントをスペース2つ分に設定
