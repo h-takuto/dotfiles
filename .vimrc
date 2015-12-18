@@ -16,8 +16,8 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle.vim'))
 "##################プラグインを記述##################
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundleFetch 'Shougo/vimproc', {
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc', {
   \ 'build' : {
     \ 'windows' : 'make -f make_mingw32.mak',
     \ 'cygwin' : 'make -f make_cygwin.mak',
@@ -25,59 +25,72 @@ NeoBundleFetch 'Shougo/vimproc', {
     \ 'unix' : 'make -f make_unix.mak',
   \ },
 \ }
-NeoBundleFetch 'Shougo/vimshell'
-NeoBundleFetch 'Shougo/unite.vim'
-NeoBundleFetch 'Shougo/neomru.vim'
-NeoBundleFetch 'Shougo/neocomplcache'
-NeoBundleFetch 'Shougo/neosnippet'
-NeoBundleFetch 'Shougo/neosnippet-snippets'
-NeoBundleFetch 'honza/vim-snippets'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'honza/vim-snippets'
 "よくわからないので削除
 "NeoBundle 'jpalardy/vim-slime'
 "cpplint.pyと競合している？ので削除
 "NeoBundle 'scrooloose/syntastic'
-NeoBundleFetch 'thinca/vim-quickrun'
-NeoBundleFetch 'sjl/gundo.vim'
-NeoBundleFetch 'nathanaelkane/vim-indent-guides'
-NeoBundleFetch 'kana/vim-smartchr'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'kana/vim-smartchr'
 "clojureの開発環境が使えるらしい
 "NeoBundle 'VimClojure'
 "入力を簡単にできるようになるが今は設定ができないので削除
 "NeoBundle 'kana/vim-smartinput'
-NeoBundleFetch 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdtree'
 "help日本語
-NeoBundleFetch 'vim-jp/vimdoc-ja'
+NeoBundle 'vim-jp/vimdoc-ja'
 "カラースキーム
-NeoBundleFetch 'nanotech/jellybeans.vim'
-NeoBundleFetch 'altercation/vim-colors-solarized'
-NeoBundleFetch 'croaker/mustang-vim'
-NeoBundleFetch 'w0ng/vim-hybrid'
-NeoBundleFetch 'jeffreyiacono/vim-colors-wombat'
-NeoBundleFetch 'vim-scripts/twilight'
-NeoBundleFetch 'vim-scripts/Zenburn'
-NeoBundleFetch 'vim-scripts/Lucius'
-NeoBundleFetch 'mrkn/mrkn256.vim'
-NeoBundleFetch 'jpo/vim-railscasts-theme'
-NeoBundleFetch 'therubymug/vim-pyte'
-NeoBundleFetch 'tomasr/molokai'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'croaker/mustang-vim'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'jeffreyiacono/vim-colors-wombat'
+NeoBundle 'vim-scripts/twilight'
+NeoBundle 'vim-scripts/Zenburn'
+NeoBundle 'vim-scripts/Lucius'
+NeoBundle 'mrkn/mrkn256.vim'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'therubymug/vim-pyte'
+NeoBundle 'tomasr/molokai'
 "カラースキーム一覧表示にUnite.vimを使う
 ":Unite colorscheme -auto-preview
-NeoBundleFetch 'ujihisa/unite-colorscheme'
+NeoBundle 'ujihisa/unite-colorscheme'
 "Python
 "flake8を使い、pep8とコードの性的解析を行い、エディタ上にエラー箇所を表示する
-NeoBundleFetch 'andviro/flake8-vim'
+NeoBundle 'andviro/flake8-vim'
 "flake8などがQuickfixに出力した結果を使い、画面上にハイライト表示する
-NeoBundleFetch 'cohama/vim-hier'
+NeoBundle 'cohama/vim-hier'
 "Quickfixの出力を使い、カーソル位置にエラーがあったら情報をステータスラインに表示する
-NeoBundleFetch 'dannyob/quickfixstatus'
+NeoBundle 'dannyob/quickfixstatus'
 "編集中のファイルにautopep8をかける
-NeoBundleFetch 'tell-k/vim-autopep8'
+NeoBundle 'tell-k/vim-autopep8'
 "演算子の両脇にスペースを挿入する。改行時は末尾のスペースを削除するなどの動作を定義できる。
 "C++
-NeoBundleFetch 'Rip-Rip/clang_complete'
-NeoBundleFetch 'rhysd/vim-clang-format'
-NeoBundleFetch 'kana/vim-operator-user'
-NeoBundleFetch 'yogomi/vim-cpplint','runAlsoC'
+NeoBundle 'Rip-Rip/clang_complete'
+NeoBundle 'rhysd/vim-clang-format'
+NeoBundle 'kana/vim-operator-user'
+NeoBundle 'yogomi/vim-cpplint','runAlsoC'
+"JavaScript
+NeoBundle 'moll/vim-node'
+NeoBundle 'mattn/jscomplete-vim'
+NeoBundle 'myhere/vim-nodejs-complete'
+NeoBundleLazy 'jelera/vim-javascript-syntax',{'autoload':{'filetypes':['javascript']}}
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'heavenshell/vim-jsdoc'
+NeoBundle 'guileen/vim-node-dict'
+
+"GO
+"オールインワンプラグイン
+NeoBundle 'fatih/vim-go'
+
 
 
 call neobundle#end()
@@ -270,7 +283,8 @@ let OSTYPE = system('uname')
 if OSTYPE == "Darwin\n"
   "以下Macの設定
   syntax on
-  colorscheme evening
+"  colorscheme evening
+
 elseif OSTYPE == "Linux\n"
   "以下linuxの設定
   syntax on
@@ -284,6 +298,8 @@ endif
 autocmd BufEnter * if &filetype == "python" | call InitPython() | endif
 autocmd BufEnter * if &filetype == "c" | call InitC_Cpp_Objc() | endif
 autocmd BufEnter * if &filetype == "html" | call Inithtml() | endif
+autocmd BufEnter * if &filetype == "js" | call InitJavaScript() | endif
+autocmd BufEnter * if &filetype == "go" | call InitGoLang() | endif
 
 "###### C C++ Object-C ######
 function! InitC_Cpp_Objc()
@@ -343,4 +359,29 @@ function! InitPython()
 endfunction
 
 
+"######## JavaScript ########"
+function! InitJavaScript()
+  set expandtab
+  set tabstop=2
+  set shiftwidth=2
+
+  let g:syntastic_enable_signs=1
+  let g:syntastic_auto_loc_list=2
+
+  let g:syntastic_favascript_checker = "jshint"
+  an FileType javascript set dictionary+=$HOME/.vim/bundle/vim-node-dict/dict/node.dict
+
+endfunction
+
+"####### GO Lang #######"
+function! InitGoLang()
+  set expandtab
+  set tabstop=2
+  set shiftwidth=2
+  let g:go_highlight_function = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_structs = 1
+  :highlight goErr cterm=bold ctermfg=214
+  :match goErr /\<err\>/
+endfunction
 

@@ -148,3 +148,10 @@ fi
 if [ -f ~/bin/cpplint.py ]; then
     export PATH=$PATH:~/bin
 fi
+
+# go言語のパスの設定
+if [ -x "`which go`" ]; then
+  export GOROOT=`go env GOROOT`
+  export GOPATH=$HOME/code/go-local
+  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+fi
