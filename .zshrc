@@ -9,7 +9,7 @@ export AUTOFEATURE=true  # autotestでfeatureを動かす
 export LANG=ja_JP.UTF-8
 
 setopt no_beep           # ビープ音を鳴らさないようにする
-setopt auto_cd           # ディレクトリ名の入力のみで移動する 
+setopt auto_cd           # ディレクトリ名の入力のみで移動する
 setopt correct           # コマンドのスペルを訂正する
 setopt magic_equal_subst # =以降も補完する(--prefix=/usrなど)
 
@@ -20,7 +20,7 @@ setopt auto_menu               # 補完キー連打で補完候補を順に表�
 setopt list_packed             # 補完候補をできるだけ詰めて表示する
 setopt list_types              # 補完候補にファイルの種類も表示する
 # Shift-Tabで補完候補を逆順する("\e[Z"でも動作する)
-bindkey "^[[Z" reverse-menu-complete 
+bindkey "^[[Z" reverse-menu-complete
 # 補完時に大文字小文字を区別しない
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # 補完時の色の設定
@@ -145,6 +145,11 @@ if [ -f ~/.alias ]; then
 	source ~/.alias
 fi
 
+#.bash_profile読み込み
+if [ -f ~/.bash_profile ]; then
+  source ~/.bash_profile
+fi
+
 if [ -f ~/bin/cpplint.py ]; then
     export PATH=$PATH:~/bin
 fi
@@ -152,6 +157,16 @@ fi
 # go言語のパスの設定
 if [ -x "`which go`" ]; then
   export GOROOT=`go env GOROOT`
-  export GOPATH=$HOME/code/go-local
+  export GOPATH=$HOME/MyLibrary/go
   export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/thayakawa/MyLibrary/google-cloud-sdk/path.zsh.inc ]; then
+  source '/Users/thayakawa/MyLibrary/google-cloud-sdk/path.zsh.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /Users/thayakawa/MyLibrary/google-cloud-sdk/completion.zsh.inc ]; then
+  source '/Users/thayakawa/MyLibrary/google-cloud-sdk/completion.zsh.inc'
 fi

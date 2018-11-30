@@ -12,6 +12,8 @@ screen: $(foreach f, $(filter .screen%, $(DOT_FILES)), link-dot-file-$(f))
 
 git: $(foreach f, $(filter .git%, $(DOT_FILES)), link-dot-file-$(f))
 
+cheatsheet: $(foreach f, $(filter .cheatsheet%, $(DOT_FILES)), link-dot-file-$(f))
+
 .PHONY: clean
 clean: $(foreach f, $(DOT_FILES), unlink-dot-file-$(f))
 
