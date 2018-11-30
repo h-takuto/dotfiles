@@ -1,101 +1,113 @@
 
 
-
-
-
-"##################プラグインマネージャー(NeoBundle)##################
-set nocompatible
-filetype off
-if 0 | endif
-if has('vim_starting')
-  if &compatible
-    set nocompatible
-  endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+"##################プラグインマネージャー(dein)##################
+if &compatible
+  set nocompatible
 endif
 
-call neobundle#begin(expand('~/.vim/bundle.vim'))
-"##################プラグインを記述##################
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc', {
-  \ 'build' : {
-    \ 'windows' : 'make -f make_mingw32.mak',
-    \ 'cygwin' : 'make -f make_cygwin.mak',
-    \ 'mac' : 'make -f make_mac.mak',
-    \ 'unix' : 'make -f make_unix.mak',
-  \ },
-\ }
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'honza/vim-snippets'
-"よくわからないので削除
-"NeoBundle 'jpalardy/vim-slime'
-"cpplint.pyと競合している？ので削除
-"NeoBundle 'scrooloose/syntastic'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'kana/vim-smartchr'
-"clojureの開発環境が使えるらしい
-"NeoBundle 'VimClojure'
-"入力を簡単にできるようになるが今は設定ができないので削除
-"NeoBundle 'kana/vim-smartinput'
-NeoBundle 'scrooloose/nerdtree'
-"help日本語
-NeoBundle 'vim-jp/vimdoc-ja'
-"カラースキーム
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'croaker/mustang-vim'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'jeffreyiacono/vim-colors-wombat'
-NeoBundle 'vim-scripts/twilight'
-NeoBundle 'vim-scripts/Zenburn'
-NeoBundle 'vim-scripts/Lucius'
-NeoBundle 'mrkn/mrkn256.vim'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'therubymug/vim-pyte'
-NeoBundle 'tomasr/molokai'
-"カラースキーム一覧表示にUnite.vimを使う
-":Unite colorscheme -auto-preview
-NeoBundle 'ujihisa/unite-colorscheme'
-"Python
-"flake8を使い、pep8とコードの性的解析を行い、エディタ上にエラー箇所を表示する
-NeoBundle 'andviro/flake8-vim'
-"flake8などがQuickfixに出力した結果を使い、画面上にハイライト表示する
-NeoBundle 'cohama/vim-hier'
-"Quickfixの出力を使い、カーソル位置にエラーがあったら情報をステータスラインに表示する
-NeoBundle 'dannyob/quickfixstatus'
-"編集中のファイルにautopep8をかける
-NeoBundle 'tell-k/vim-autopep8'
-"演算子の両脇にスペースを挿入する。改行時は末尾のスペースを削除するなどの動作を定義できる。
-"C++
-NeoBundle 'Rip-Rip/clang_complete'
-NeoBundle 'rhysd/vim-clang-format'
-NeoBundle 'kana/vim-operator-user'
-NeoBundle 'yogomi/vim-cpplint','runAlsoC'
-"JavaScript
-NeoBundle 'moll/vim-node'
-NeoBundle 'mattn/jscomplete-vim'
-NeoBundle 'myhere/vim-nodejs-complete'
-NeoBundleLazy 'jelera/vim-javascript-syntax',{'autoload':{'filetypes':['javascript']}}
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'heavenshell/vim-jsdoc'
-NeoBundle 'guileen/vim-node-dict'
+set runtimepath+=~/.vim/dein/dein.vim
 
-"GO
-"オールインワンプラグイン
-NeoBundle 'fatih/vim-go'
+if dein#load_state('~/.vim/dein/')
+  call dein#begin(expand('~/.vim/dein'))
+
+  "vimのプラグイン管理
+  call dein#add('Shougo/dein.vim')
+
+  "補完（deopleteはpython3が必要)
+  if ((has('nvim') || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
+    call dein#add('Shougo/deoplete.nvim')
+    if !has('nvim')
+      call dein#add('roxma/nvim-yarp')
+      call dein#add('roxma/vim-hug-neovim-rpc')
+    endif
+  elseif has('lua')
+    call dein#add('Shougo/neocomplete.vim')
+  else
+    call dein#add('Shougo/neocomplcache.vim')
+  endif
+
+  "スニペット群
+  call dein#add('Shougo/neosnippet')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('hanza/vim-snippets')
+
+  "vimで非同期処理を行うときに使う
+  call dein#add('Shougo/vimproc.vim', {
+    \ 'build' : {
+      \ 'windows' : 'tools\\update-dll-mingw',
+      \ 'cygwin' : 'make -f make_cygwin.mak',
+      \ 'mac' : 'make -f make_mac.mak',
+      \ 'linux' : 'make',
+      \ 'unix' : 'gmake',
+    \ },
+  \ })
+
+  "vimのファイラー的なやつ
+  call dein#add('Shougo/unite.vim')
+  "unite.vimの付属てきなやつ？
+  call dein#add('Shougo/neomru.vim')
+
+  "カラースキーム一覧表示にUnite.vimを使う
+  ":Unite colorscheme -auto-preview
+  call dein#add('ujihisa/unite-colorscheme')
+
+  ":Cheatで.cheatsheet.mdを開く
+  call dein#add('reireias/vim-cheatsheet')
+
+  "vimからソースコードを実行
+  call dein#add('thinca/vim-quickrun')
+
+  "キーを押す回数で挿入文字が変わる
+  call dein#add('kana/vim-smartchr')
+
+  "ディレクトリを左に出す
+  call dein#add('scrooloose/nerdtree')
+  "help日本語
+  call dein#add('vim-jp/vimdoc-ja')
+
+  "flake8などがQuickfixに出力した結果を使い、画面上にハイライト表示する
+  call dein#add('cohama/vim-hier')
+  "Quickfixの出力を使い、カーソル位置にエラーがあったら情報をステータスラインに表示する
+  call dein#add('dannyob/quickfixstatus')
+  "テキストにカッコで囲んだりできる
+  call dein#add('kana/vim-operator-user')
+  "シンタックスチェッカー
+  call dein#add('scrooloose/syntastic')
 
 
+  "Python
+  "flake8を使い、pep8とコードの性的解析を行い、エディタ上にエラー箇所を表示する
+  call dein#add('andviro/flake8-vim')
+  "編集中のファイルにautopep8をかける
+  call dein#add('tell-k/vim-autopep8')
 
-call neobundle#end()
+  "JavaScript
+  "gfでrequire()のモジュールにジャンプ
+  call dein#add('moll/vim-node')
+  "補完
+  call dein#add('mattn/jscomplete-vim')
+  call dein#add('myhere/vim-nodejs-complete')
+  call dein#add('heavenshell/vim-jsdoc')
+  call dein#add('guileen/vim-node-dict')
+  "ES6のシンタックスハイライト
+  call dein#add('jelera/vim-javascript-syntax',{'autoload':{'filetypes':['javascript']}})
+
+  "GO
+  "オールインワンプラグイン
+  call dein#add('fatih/vim-go')
+
+  call dein#end()
+  call dein#save_state()
+endif
+
 filetype plugin indent on
-NeoBundleCheck
+syntax enable
+
+
+"vim-chertsheet
+let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
+
+
 
 "     vim-jp setting
 :set helplang=ja,en
@@ -132,6 +144,7 @@ let g:neocomplcache_dictionary_filetype_lists = {
     \ }
 imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable()
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
+
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 function! s:my_cr_function()
@@ -157,8 +170,6 @@ let g:quickrun_config={'*':{'split' : ''}}
 
 
 
-"    gundo setting
-nmap <C-z> :<C-u>GundoToggle<CR>
 
 
 
@@ -202,6 +213,21 @@ let g:PyFlakeAggressive = 1
 " ガイドの幅
 "let g:indent_guides_guide_size=2
 
+
+
+
+
+"#############マウス##################
+if has('mouse')
+  set mouse=a
+  if has('mouse_sgr')
+    set ttymouse=sgr
+  elseif v:version > 703 || v:version is 703 && has('patch632')
+    set ttymouse=sgr
+  else
+    set ttymouse=xterm2
+  endif
+endif
 
 
 
@@ -276,6 +302,11 @@ set nobackup "バックアップをしない
 "set mouse=a "マウスモード有効
 set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
 
+" VimのUndoを永続化する
+if has('persistent_undo')
+  set undodir=~/.vim/undo
+  set undofile
+endif
 
 "#################OSごとの設定###############
 let OSTYPE = system('uname')
@@ -295,7 +326,7 @@ endif
 
 
 "##################言語ごとの設定##################
-autocmd BufEnter * if &filetype == "python" | call InitPython() | endif
+"autocmd BufEnter * if &filetype == "python" | call InitPython() | endif
 autocmd BufEnter * if &filetype == "c" | call InitC_Cpp_Objc() | endif
 autocmd BufEnter * if &filetype == "html" | call Inithtml() | endif
 autocmd BufEnter * if &filetype == "js" | call InitJavaScript() | endif
