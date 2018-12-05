@@ -7,6 +7,7 @@
 export EDITOR=vim        # エディタをvimに設定
 export AUTOFEATURE=true  # autotestでfeatureを動かす
 export LANG=ja_JP.UTF-8
+export XDG_CONFIG_HOME=~/.config
 
 setopt no_beep           # ビープ音を鳴らさないようにする
 setopt auto_cd           # ディレクトリ名の入力のみで移動する

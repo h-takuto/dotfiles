@@ -14,22 +14,26 @@ if dein#load_state('~/.vim/dein/')
   call dein#add('Shougo/dein.vim')
 
   "補完（deopleteはpython3が必要)
-  if ((has('nvim') || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
-    call dein#add('Shougo/deoplete.nvim')
-    if !has('nvim')
-      call dein#add('roxma/nvim-yarp')
-      call dein#add('roxma/vim-hug-neovim-rpc')
-    endif
-  elseif has('lua')
-    call dein#add('Shougo/neocomplete.vim')
-  else
-    call dein#add('Shougo/neocomplcache.vim')
+"  if ((has('nvim') || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
+"    call dein#add('Shougo/deoplete.nvim')
+"    if !has('nvim')
+"      call dein#add('roxma/nvim-yarp')
+"      call dein#add('roxma/vim-hug-neovim-rpc')
+"    endif
+"  elseif has('lua')
+"    call dein#add('Shougo/neocomplete.vim')
+"  else
+"    call dein#add('Shougo/neocomplcache.vim')
+"  endif
+  call dein#add('Shougo/deoplete.nvim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
   endif
 
   "スニペット群
   call dein#add('Shougo/neosnippet')
   call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('hanza/vim-snippets')
 
   "vimで非同期処理を行うときに使う
   call dein#add('Shougo/vimproc.vim', {
@@ -74,13 +78,11 @@ if dein#load_state('~/.vim/dein/')
   "シンタックスチェッカー
   call dein#add('scrooloose/syntastic')
 
-
   "Python
   "flake8を使い、pep8とコードの性的解析を行い、エディタ上にエラー箇所を表示する
   call dein#add('andviro/flake8-vim')
   "編集中のファイルにautopep8をかける
   call dein#add('tell-k/vim-autopep8')
-
   "JavaScript
   "gfでrequire()のモジュールにジャンプ
   call dein#add('moll/vim-node')
@@ -103,11 +105,14 @@ endif
 filetype plugin indent on
 syntax enable
 
+"##########プラグイン設定###############
+
+"deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_completion_start_length = 1
 
 "vim-chertsheet
 let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
-
-
 
 "     vim-jp setting
 :set helplang=ja,en
@@ -126,10 +131,6 @@ nnoremap <silent> ,uf :<C-u>Unite -buffer-name=file file<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 "
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-
-
-
-
 
 "    neocomplcache setting
 let g:acp_enableAtStartup = 0
@@ -151,8 +152,6 @@ function! s:my_cr_function()
   return neocomplcache#smart_close_popup() . "\<TAB>"
 endfunction
 
-
-
 "    snippets setting
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neocomplcache_snippets_dir='~/.vim/bundle/vim-snippets/snippets'
@@ -162,16 +161,9 @@ imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 
-
-
 "    quickrun setting
 set splitbelow
 let g:quickrun_config={'*':{'split' : ''}}
-
-
-
-
-
 
 "    vim-hier quickfixstatus setting
 let g:PyFlakeOnWrite=1
@@ -188,30 +180,14 @@ let g:PyFlakeDefaultComplexity = 10
 " Be aggressive for autopep8
 let g:PyFlakeAggressive = 1
 
+" NERDTree
+" ファイルを開いたらNERDTreeを閉じる
+let g:NERDTreeQuitOnOpen = 1
+" 非表示ファイル
+let g:NERDTreeIgnore=['\.git$','\.swp$']
+" 親ディレクトリへ移動
+let g:NERDTreeMapUpdi=''
 
-
-
-
-"   syntastic setting
-"let g:syntastic_enable_signs=1
-"let g:syntastic_auto_loc_list=2
-
-
-
-
-"     vim-indent-guides setting
-" vim 起動時 vim-indent-guides を自動起動
-"let g:indent_guides_enable_on_vim_startup=1
-" ガイドをスタートするインデントの量
-"let g:indent_guides_start_level=2
-" 自動カラー無効
-"let g:indent_guides_auto_colors = 0
-" 奇数番目のインデントの色
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=6
-" 偶数番目のインデントの色
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=1
-" ガイドの幅
-"let g:indent_guides_guide_size=2
 
 
 
@@ -223,7 +199,7 @@ if has('mouse')
   if has('mouse_sgr')
     set ttymouse=sgr
   elseif v:version > 703 || v:version is 703 && has('patch632')
-    set ttymouse=sgr
+"    set ttymouse=sgr
   else
     set ttymouse=xterm2
   endif
@@ -239,6 +215,10 @@ endif
 "ビジュアル           vnoremap vmap
 "コマンド             cnoremap cmap
 "インサート           inoremap imap
+
+"sをコマンド開始キーに変更
+nnoremap s <Nop>
+
 ":=;に変更
 nnoremap ; :
 "ノーマルモードでエンターキーで改行
@@ -246,8 +226,13 @@ noremap <CR> o<ESC>>
 "ビジュアルモード時vで行末まで選択
 vnoremap v $h
 
+"タブ移動 t + l,h
 
-
+"ウィンドウ移動 s + j,k,l,h
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
 
 "##################表示設定##################
 set number "行番号を表示
@@ -314,7 +299,7 @@ let OSTYPE = system('uname')
 if OSTYPE == "Darwin\n"
   "以下Macの設定
   syntax on
-"  colorscheme evening
+  colorscheme koehler
 
 elseif OSTYPE == "Linux\n"
   "以下linuxの設定

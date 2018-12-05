@@ -15,3 +15,9 @@ do
     ln -s $HOME/dotfiles/$file $HOME/$file
 done
 
+
+##### NeoVim ########
+
+mkdir -p ~/.config/nvim
+ln -snfv $HOME/.vim $HOME/.config/nvim/
+ln -snfv $HOME/dotfiles/.vimrc $HOME/.config/nvim/init.vim
