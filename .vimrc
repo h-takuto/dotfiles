@@ -14,21 +14,16 @@ if dein#load_state('~/.cache/dein/')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   "補完（deopleteはpython3が必要)
-"  if ((has('nvim') || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
-"    call dein#add('Shougo/deoplete.nvim')
-"    if !has('nvim')
-"      call dein#add('roxma/nvim-yarp')
-"      call dein#add('roxma/vim-hug-neovim-rpc')
-"    endif
-"  elseif has('lua')
-"    call dein#add('Shougo/neocomplete.vim')
-"  else
-"    call dein#add('Shougo/neocomplcache.vim')
-"  endif
-  call dein#add('Shougo/deoplete.nvim')
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
+  if ((has('nvim') || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
+    call dein#add('Shougo/deoplete.nvim')
+    if !has('nvim')
+      call dein#add('roxma/nvim-yarp')
+      call dein#add('roxma/vim-hug-neovim-rpc')
+    endif
+  elseif has('lua')
+    call dein#add('Shougo/neocomplete.vim')
+  else
+    call dein#add('Shougo/neocomplcache.vim')
   endif
 
   "スニペット群
