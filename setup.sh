@@ -4,7 +4,11 @@ DOT_FILES=(.zshrc .vimrc .gitignore .gitconfig .screenrc .xvimrc .cheatsheet.md)
 
 #######ディレクトリ操作#######
 #git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-git clone https://github.com/Shougo/dein.vim.git ~/.vim/dein/dein.vim
+
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+sh ./installer.sh ~/.cache/dein
+rm -f installer.sh
+#git clone https://github.com/Shougo/dein.vim.git ~/.cache/dein/repos/github.com/Shougo/
 cp -a after/ $HOME/.vim/after
 cp -a bin/ $HOME/bin
 mkdir -p ~/.vim/undo

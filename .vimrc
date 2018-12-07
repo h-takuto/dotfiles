@@ -5,13 +5,13 @@ if &compatible
   set nocompatible
 endif
 
-set runtimepath+=~/.vim/dein/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('~/.vim/dein/')
-  call dein#begin(expand('~/.vim/dein'))
+if dein#load_state('~/.cache/dein/')
+  call dein#begin('~/.cache/dein')
 
   "vimのプラグイン管理
-  call dein#add('Shougo/dein.vim')
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   "補完（deopleteはpython3が必要)
 "  if ((has('nvim') || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
@@ -36,15 +36,16 @@ if dein#load_state('~/.vim/dein/')
   call dein#add('Shougo/neosnippet-snippets')
 
   "vimで非同期処理を行うときに使う
-  call dein#add('Shougo/vimproc.vim', {
-    \ 'build' : {
-      \ 'windows' : 'tools\\update-dll-mingw',
-      \ 'cygwin' : 'make -f make_cygwin.mak',
-      \ 'mac' : 'make -f make_mac.mak',
-      \ 'linux' : 'make',
-      \ 'unix' : 'gmake',
-    \ },
-  \ })
+  "call dein#add('Shougo/vimproc.vim', {
+  "  \ 'build' : {
+  "    \ 'windows' : 'tools\\update-dll-mingw',
+  "    \ 'cygwin' : 'make -f make_cygwin.mak',
+  "    \ 'mac' : 'make -f make_mac.mak',
+  "    \ 'linux' : 'make',
+  "    \ 'unix' : 'gmake',
+  "  \ },
+  "\ })
+  call dein#add('Shougo/vimproc', {'build': 'make'})
 
   "vimのファイラー的なやつ
   call dein#add('Shougo/unite.vim')
@@ -105,6 +106,10 @@ endif
 filetype plugin indent on
 syntax enable
 
+if dein#check_install()
+  call dein#install()
+endif
+
 "##########プラグイン設定###############
 
 "deoplete
@@ -113,7 +118,7 @@ let g:deoplete#auto_completion_start_length = 1
 
 "vim-chertsheet
 let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
-
+let g:cheatsheet#vsplit = 1
 "     vim-jp setting
 :set helplang=ja,en
 
@@ -162,7 +167,6 @@ smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 
 "    quickrun setting
-set splitbelow
 let g:quickrun_config={'*':{'split' : ''}}
 
 "    vim-hier quickfixstatus setting
@@ -286,6 +290,8 @@ set nowritebackup "バックアップファイルを作らない
 set nobackup "バックアップをしない
 "set mouse=a "マウスモード有効
 set whichwrap=b,s,h,l,<,>,[,] "行頭、行末で止まらないようにする
+set splitright "画面を縦分割する際に右に開く
+set splitbelow "画面を横分割する際に下に開く
 
 " VimのUndoを永続化する
 if has('persistent_undo')
