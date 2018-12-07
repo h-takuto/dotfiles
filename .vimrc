@@ -31,15 +31,6 @@ if dein#load_state('~/.cache/dein/')
   call dein#add('Shougo/neosnippet-snippets')
 
   "vimで非同期処理を行うときに使う
-  "call dein#add('Shougo/vimproc.vim', {
-  "  \ 'build' : {
-  "    \ 'windows' : 'tools\\update-dll-mingw',
-  "    \ 'cygwin' : 'make -f make_cygwin.mak',
-  "    \ 'mac' : 'make -f make_mac.mak',
-  "    \ 'linux' : 'make',
-  "    \ 'unix' : 'gmake',
-  "  \ },
-  "\ })
   call dein#add('Shougo/vimproc', {'build': 'make'})
 
   "vimのファイラー的なやつ
