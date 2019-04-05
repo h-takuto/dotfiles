@@ -242,7 +242,6 @@ set ambiwidth=double
 if has('path_extra')
   set tags& tags+=.tags,tags
 endif
-set laststatus=2
 set showtabline=2
 
 "最後のカーソル位置を復元する
@@ -253,6 +252,10 @@ if has("autocmd")
         \ endif
 endif
 
+"ステータスライン"
+set laststatus=2
+set statusline=%F%m%h%w\ %<[ENC=%{&fenc!=''?&fenc:&enc}]\ [FMT=%{&ff}]\ [TYPE=%Y]\ %=[POS=%l/%L(%02v)]
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 
 "##################検索設定##################
 set ignorecase "大文字、小文字の区別なく検索する
