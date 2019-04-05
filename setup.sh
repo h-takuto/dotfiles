@@ -21,5 +21,5 @@ mkdir -p ~/.config/nvim
 ln -snfv $HOME/.vim $HOME/.config/nvim/
 ln -snfv $HOME/dotfiles/.vimrc $HOME/.config/nvim/init.vim
 
-
-
+mkdir -p ~/.cache/dein/repos/github.com/Shougo/dein.vim
+git clone https://github.com/Shougo/dein.vim.git ~/.cache/dein/repos/github.com/Shougo/dein.vim
