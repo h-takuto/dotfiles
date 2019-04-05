@@ -14,6 +14,18 @@ setopt auto_cd           # ディレクトリ名の入力のみで移動する
 setopt correct           # コマンドのスペルを訂正する
 setopt magic_equal_subst # =以降も補完する(--prefix=/usrなど)
 
+# auto ls
+case ${OSTYPE} in
+  darwin*)
+    export CLICOLOR=1
+    function chpwd() {ls -G -F}
+    ;;
+  linux*)
+    function chpwd() { ls -F --color=auto }
+    ;;
+esac
+
+
 ### Complement (補完関連) ###
 autoload -U compinit; compinit # 補完機能を有効にする
 setopt auto_list               # 補完候補を一覧で表示する(d)
@@ -111,6 +123,7 @@ alias mv='mv -i'
 alias -s py=python
 alias -s php=php
 alias -s rb=ruby
+alias ps='ps aux'
 alias hisa='history-all'
 
 ### git Aliases ###
