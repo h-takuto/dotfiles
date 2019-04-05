@@ -55,6 +55,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('scrooloose/nerdtree')
   "help日本語
   call dein#add('vim-jp/vimdoc-ja')
+  "vimからgitを使う
+  call dein#add('tpope/vim-fugitive')
 
   "flake8などがQuickfixに出力した結果を使い、画面上にハイライト表示する
   call dein#add('cohama/vim-hier')
