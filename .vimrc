@@ -112,16 +112,6 @@ let g:cheatsheet#vsplit = 1
 let g:unite_enable_start_insert =1
 let g:unite_source_history_yank_enaable=1
 let g:unite_source_file_mru_limit=200
-" ヤンクの履歴
-nnoremap <silent> ,ur :<C-u>Unite history/yank<CR>
-"バッファ一覧
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-"ファイル一覧
-nnoremap <silent> ,uf :<C-u>Unite -buffer-name=file file<CR>
-"sourcesを「今開いているファイルのディレクトリ」とする
-nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
-"
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 
 "    neocomplcache setting
 let g:acp_enableAtStartup = 0
@@ -177,10 +167,8 @@ let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeIgnore=['\.git$','\.swp$']
 " 親ディレクトリへ移動
 let g:NERDTreeMapUpdi=''
-
-
-
-
+"ファイル一覧
+nnoremap uf :<C-u>NERDTree<CR>
 
 
 "#############マウス##################
@@ -208,6 +196,7 @@ endif
 
 "sをコマンド開始キーに変更
 nnoremap s <Nop>
+nnoremap u <Nop>
 
 ":=;に変更
 nnoremap ; :
@@ -223,6 +212,9 @@ nnoremap sh <C-w>h
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
+
+nnoremap <C-z> u
+inoremap <C-z> <C-o>u
 
 "##################表示設定##################
 set number "行番号を表示
