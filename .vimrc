@@ -14,7 +14,7 @@ if dein#load_state('~/.cache/dein/')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   "補完（deopleteはpython3が必要)
-  if ((has('nvim') || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
+  if ((has('nvim') || has('timers')) && has('python3'))
     call dein#add('Shougo/deoplete.nvim')
     if !has('nvim')
       call dein#add('roxma/nvim-yarp')
@@ -258,6 +258,32 @@ if has("autocmd")
         \   exe "normal! g'\"" |
         \ endif
 endif
+
+"スペルチェック 日本語、キャメルケース、スネークケースを除外
+set spelllang=en,cjk
+
+fun! s:SpellConf()
+  redir! => syntax
+  silent syntax
+  redir END
+
+  set spell
+
+  if syntax =~? '/<comment\>'
+    syntax spell default
+    syntax match SpellMaybeCode /\<\h\l*[_A-Z]\h\{-}\>/ contains=@NoSpell transparent containedin=Comment contained
+  else
+    syntax spell toplevel
+    syntax match SpellMaybeCode /\<\h\l*[_A-Z]\h\{-}\>/ contains=@NoSpell transparent
+  endif
+
+  syntax cluster Spell add=SpellNotAscii,SpellMaybeCode
+endfunc
+
+augroup spell_check
+  autocmd!
+  autocmd BufReadPost,BufNewFile,Syntax * call s:SpellConf()
+augroup END
 
 
 "##################検索設定##################

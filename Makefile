@@ -1,27 +1,20 @@
-DOT_FILES = .zshrc .vimrc .screenrc .gitignore .gitconfig .xvimrc
+DOTPATH    := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+CANDIDATES := $(wildcard .??*) bin
+EXCLUSIONS := .DS_Store .git .gitmodules .travis.yml
+DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
 
-all: zsh vim screen
+deploy:
+	@echo '==> Start to deploy dotfiles to home directory.'
+	@echo ''
+	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(join(".", $(val)));)
 
-zsh: $(foreach f, $(filter .zsh%, $(DOT_FILES)), link-dot-file-$(f))
+help:
+	@echo "deploy  => Create symlinks to home directory."
+	@echo "update  => Fetch all changes from remote repo."
+	@echo "install => Run update, deploy, init"
+	@echo "clean   => remove the dotfiles"
 
-vim: $(foreach f, $(filter .vim%, $(DOT_FILES)), link-dot-file-$(f))
+clean:
+	@echo 'Remove dot files from your home directory.'
+	@-$(foreach val, $(DOTFILES), rm -vrf $(HOME)/$(val);)
 
-xvim: $(foreach f, $(filter .xvim% $(DOT_FILES)), link-dot-file-$(f))
-
-screen: $(foreach f, $(filter .screen%, $(DOT_FILES)), link-dot-file-$(f))
-
-git: $(foreach f, $(filter .git%, $(DOT_FILES)), link-dot-file-$(f))
-
-cheatsheet: $(foreach f, $(filter .cheatsheet%, $(DOT_FILES)), link-dot-file-$(f))
-
-.PHONY: clean
-clean: $(foreach f, $(DOT_FILES), unlink-dot-file-$(f))
-
-
-link-dot-file-%: %
-	@echo "Create Symlink $< => $(HOME)/$<"
-	@ln -snf $(CURDIR)/$< $(HOME)/$<
-
-unlink-dot-file-%: %
-	@echo "Remove Symlink $(HOME)/$<"
-	@$(RM) $(HOME)/$<
