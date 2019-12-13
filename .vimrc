@@ -7,7 +7,7 @@ endif
 
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('~/.cache/dein/')
+if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
 
   "vimのプラグイン管理
@@ -55,6 +55,8 @@ if dein#load_state('~/.cache/dein/')
   call dein#add('scrooloose/nerdtree')
   "help日本語
   call dein#add('vim-jp/vimdoc-ja')
+  "vimからgitを使う
+  call dein#add('tpope/vim-fugitive')
 
   "flake8などがQuickfixに出力した結果を使い、画面上にハイライト表示する
   call dein#add('cohama/vim-hier')
@@ -112,16 +114,6 @@ let g:cheatsheet#vsplit = 1
 let g:unite_enable_start_insert =1
 let g:unite_source_history_yank_enaable=1
 let g:unite_source_file_mru_limit=200
-" ヤンクの履歴
-nnoremap <silent> ,ur :<C-u>Unite history/yank<CR>
-"バッファ一覧
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-"ファイル一覧
-nnoremap <silent> ,uf :<C-u>Unite -buffer-name=file file<CR>
-"sourcesを「今開いているファイルのディレクトリ」とする
-nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
-"
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 
 "    neocomplcache setting
 let g:acp_enableAtStartup = 0
@@ -177,10 +169,8 @@ let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeIgnore=['\.git$','\.swp$']
 " 親ディレクトリへ移動
 let g:NERDTreeMapUpdi=''
-
-
-
-
+"ファイル一覧
+nnoremap uf :<C-u>NERDTree<CR>
 
 
 "#############マウス##################
@@ -208,6 +198,7 @@ endif
 
 "sをコマンド開始キーに変更
 nnoremap s <Nop>
+nnoremap u <Nop>
 
 ":=;に変更
 nnoremap ; :
@@ -223,6 +214,9 @@ nnoremap sh <C-w>h
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
+
+nnoremap <C-z> u
+inoremap <C-z> <C-o>u
 
 "##################表示設定##################
 set number "行番号を表示
@@ -248,7 +242,6 @@ set ambiwidth=double
 if has('path_extra')
   set tags& tags+=.tags,tags
 endif
-set laststatus=2
 set showtabline=2
 
 "最後のカーソル位置を復元する
@@ -285,6 +278,10 @@ augroup spell_check
   autocmd BufReadPost,BufNewFile,Syntax * call s:SpellConf()
 augroup END
 
+"ステータスライン"
+set laststatus=2
+set statusline=%F%m%h%w\ %<[ENC=%{&fenc!=''?&fenc:&enc}]\ [FMT=%{&ff}]\ [TYPE=%Y]\ %=[POS=%l/%L(%02v)]
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 
 "##################検索設定##################
 set ignorecase "大文字、小文字の区別なく検索する
