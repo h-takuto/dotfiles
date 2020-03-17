@@ -87,6 +87,9 @@ if dein#load_state('~/.cache/dein')
   "オールインワンプラグイン
   call dein#add('fatih/vim-go')
 
+  "Lua
+  call dein#add('wsdjeg/vim-lua')
+
   call dein#end()
   call dein#save_state()
 endif
@@ -252,32 +255,6 @@ if has("autocmd")
         \ endif
 endif
 
-"スペルチェック 日本語、キャメルケース、スネークケースを除外
-set spelllang=en,cjk
-
-fun! s:SpellConf()
-  redir! => syntax
-  silent syntax
-  redir END
-
-  set spell
-
-  if syntax =~? '/<comment\>'
-    syntax spell default
-    syntax match SpellMaybeCode /\<\h\l*[_A-Z]\h\{-}\>/ contains=@NoSpell transparent containedin=Comment contained
-  else
-    syntax spell toplevel
-    syntax match SpellMaybeCode /\<\h\l*[_A-Z]\h\{-}\>/ contains=@NoSpell transparent
-  endif
-
-  syntax cluster Spell add=SpellNotAscii,SpellMaybeCode
-endfunc
-
-augroup spell_check
-  autocmd!
-  autocmd BufReadPost,BufNewFile,Syntax * call s:SpellConf()
-augroup END
-
 "ステータスライン"
 set laststatus=2
 set statusline=%F%m%h%w\ %<[ENC=%{&fenc!=''?&fenc:&enc}]\ [FMT=%{&ff}]\ [TYPE=%Y]\ %=[POS=%l/%L(%02v)]
@@ -289,9 +266,6 @@ set smartcase  "検索文字列に大文字が含まれている場合は区別�
 set wrapscan   "検索時に最後まで行ったら最初に戻る
 set hlsearch   "ハイライト検索が有効
 set incsearch  "インクリメントサーチ
-
-
-
 
 "##################環境設定##################
 set noswapfile " .swapファイルを作らない
