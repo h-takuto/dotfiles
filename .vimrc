@@ -48,6 +48,9 @@ if dein#load_state('~/.cache/dein')
   "vimからソースコードを実行
   call dein#add('thinca/vim-quickrun')
 
+  "vimのウィンドウサイズを調整
+  call dein#add('simeji/winresizer')
+
   "キーを押す回数で挿入文字が変わる
   call dein#add('kana/vim-smartchr')
 
