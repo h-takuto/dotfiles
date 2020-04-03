@@ -50,6 +50,9 @@ if dein#load_state('~/.cache/dein')
 
   "vimのウィンドウサイズを調整
   call dein#add('simeji/winresizer')
+  "vimのジャンプを楽にする
+  call dein#add('easymotion/vim-easymotion')
+
 
   "キーを押す回数で挿入文字が変わる
   call dein#add('kana/vim-smartchr')
@@ -284,6 +287,9 @@ if has('persistent_undo')
   set undodir=~/.vim/undo
   set undofile
 endif
+
+"Leaderキーをスペースに変更(デフォルトは"\")
+let mapleader = "\<Space>"
 
 "#################OSごとの設定###############
 let OSTYPE = system('uname')
